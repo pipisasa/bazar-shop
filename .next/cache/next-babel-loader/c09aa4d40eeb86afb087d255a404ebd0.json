@@ -1,0 +1,1 @@
+{"ast":null,"code":"import gql from 'graphql-tag';\nexport const GET_CATEGORIES = gql`\n  query {\n    allCategories{\n      id\n      title\n      icon\n      slug\n      children{\n        id\n        title\n        icon\n        slug\n      }\n    }\n  }\n`;","map":null,"metadata":{},"sourceType":"module"}
