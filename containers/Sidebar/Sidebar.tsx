@@ -28,8 +28,6 @@ import { TreeMenu } from 'components/TreeMenu/TreeMenu';
 
 import { GET_CATEGORIES } from 'graphql/query/category.query';
 
-import { REQUEST_MEDICINE_PAGE } from 'constants/navigation';
-
 type SidebarCategoryProps = {
   deviceType: {
     mobile: string;
@@ -87,33 +85,17 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
           }
           className='category-popover'
           content={
-            <>
-              {type === 'medicine' && (
-                <Link href={REQUEST_MEDICINE_PAGE}>
-                  <RequestMedicine>
-                    <FormattedMessage id='reqMedicine' />
-                  </RequestMedicine>
-                </Link>
-              )}
-              <TreeMenu
-                data={data.allCategories}
-                onClick={handleCategorySelection}
-                active={selectedQueries}
-              />
-            </>
+            <TreeMenu
+              data={data.allCategories}
+              onClick={handleCategorySelection}
+              active={selectedQueries}
+            />
           }
         />
       </PopoverWrapper>
 
       <SidebarWrapper style={{ paddingTop: type === 'medicine' ? 0 : 45 }}>
         <Sticky enabled={isSidebarSticky} top={type === 'medicine' ? 89 : 110}>
-          {type === 'medicine' && (
-            <Link href={REQUEST_MEDICINE_PAGE}>
-              <RequestMedicine>
-                <FormattedMessage id='reqMedicine' />
-              </RequestMedicine>
-            </Link>
-          )}
 
           <Scrollbars
             universal

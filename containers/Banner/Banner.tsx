@@ -1,7 +1,7 @@
 import React, { useContext, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Waypoint } from 'react-waypoint';
-import SearchBox from 'components/SearchBox/SearchBox';
+// import SearchBox from 'components/SearchBox/SearchBox';
 import { SearchContext } from 'contexts/search/search.context';
 import { useStickyDispatch } from 'contexts/app/app.provider';
 import { FormattedMessage } from 'react-intl';
@@ -22,15 +22,15 @@ import { useLocale } from 'contexts/language/language.provider';
 
 
 type BannerProps = {
-  imageUrl: string;
   intlTitleId: string;
   intlDescriptionId: string;
+  color?: string;
 };
 
 const Banner: React.FC<BannerProps> = ({
-  imageUrl,
   intlTitleId,
   intlDescriptionId,
+  color,
 }) => {
   const { state, dispatch } = useContext(SearchContext);
   const router = useRouter();
@@ -79,12 +79,10 @@ const Banner: React.FC<BannerProps> = ({
   };
 
   return (
-    <BannerWrapper
-      style={{
-        backgroundImage: `url(${imageUrl})`,
-      }}
-    >
-      <BannerComponent>
+    <BannerWrapper>
+      <BannerComponent style={{
+        background: color ? color : 'red'
+      }}>
         <BannerHeading>
           <FormattedMessage
             id={intlTitleId}
@@ -99,7 +97,7 @@ const Banner: React.FC<BannerProps> = ({
           />
         </BannerSubHeading>
 
-        <SearchBox
+        {/* <SearchBox
           style={{
             width: 700,
             boxShadow: '0 21px 36px rgba(0,0,0,0.05)',
@@ -111,7 +109,7 @@ const Banner: React.FC<BannerProps> = ({
           onClick={handleClickSearchButton}
           className='banner-search'
           pathname={pathname}
-        />
+        /> */}
         <Waypoint
           onEnter={removeSticky}
           onLeave={setSticky}
@@ -278,37 +276,39 @@ export const BannerCarousel = ({
     deviceType = 'tablet';
   }
   return (
-    <div dir="ltr">
-      <Carousel
-        arrows={false}
-        responsive={responsive}
-        ssr={true}
-        showDots={false}
-        slidesToSlide={1}
-        infinite={infinite}
-        containerClass="container-with-dots"
-        itemClass={itemClass}
-        deviceType={deviceType}
-        autoPlay={autoPlay}
-        autoPlaySpeed={5000}
-        renderButtonGroupOutside={true}
-        additionalTransfrom={0}
-        customButtonGroup={<ButtonGroup />}
-        {...props}
-        // use dir ltr when rtl true
-      >
-        {data.map((item: any, index: number) => {
-          if (component) return component(item);
-          return (
-            <Banner
-              intlTitleId='womenClothsTitle'
-              intlDescriptionId='womenClothsSubTitle'
-              key={item.id} 
-              imageUrl={item.imgSrc}
-            />
-          );
-        })}
-      </Carousel>
+    <div style={{padding: '90px 0 0 0'}} dir="ltr">
+      <div style={{position:'relative', width:"100%", height:"100%"}}>
+        <Carousel
+          arrows={false}
+          responsive={responsive}
+          ssr={true}
+          showDots={false}
+          slidesToSlide={1}
+          infinite={infinite}
+          containerClass="container-with-dots"
+          itemClass={itemClass}
+          deviceType={deviceType}
+          autoPlay={autoPlay}
+          autoPlaySpeed={5000}
+          renderButtonGroupOutside={true}
+          additionalTransfrom={0}
+          customButtonGroup={<ButtonGroup />}
+          {...props}
+          // use dir ltr when rtl true
+          >
+          {data.map((item: any, index: number) => {
+            if (component) return component(item);
+            return (
+              <Banner
+                intlTitleId='womenClothsTitle'
+                intlDescriptionId='womenClothsSubTitle'
+                key={item.id}
+                color={item.color}
+              />
+              );
+            })}
+        </Carousel>
+      </div>
     </div>
   );
 };

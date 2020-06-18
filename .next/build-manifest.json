@@ -20,11 +20,11 @@
     "/_polyfills": [
       "static/runtime/polyfills.js"
     ],
-    "/clothing": [
+    "/kids": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/profile": [
+    "/men": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

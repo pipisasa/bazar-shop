@@ -9,22 +9,13 @@ import {
 import Popover from 'components/Popover/Popover';
 import {
   MenuDown,
-  FruitsVegetable,
-  FacialCare,
-  Handbag,
   DressIcon,
-  FurnitureIcon,
-  BookIcon,
-  MedicineIcon,
 } from 'components/AllSvgIcon';
 import NavLink from 'components/NavLink/NavLink';
 import {
-  CLOTHING,
-  MAKEUP_PAGE,
-  BAGS_PAGE,
-  FURNITURE_PAGE,
-  BOOK_PAGE,
-  MEDICINE_PAGE,
+  MEN,
+  WOMEN,
+  KIDS
 } from 'constants/navigation';
 import { useRouter } from 'next/router';
 import { FormattedMessage } from 'react-intl';
@@ -32,40 +23,22 @@ import { FormattedMessage } from 'react-intl';
 import Logo from 'components/Logo/Logo';
 const MENU_ITEMS = [
   {
-    link: MAKEUP_PAGE,
-    label: 'Makeup',
-    icon: <FacialCare />,
-    intlId: 'navMakeupMenu',
-  },
-  {
-    link: BAGS_PAGE,
-    label: 'Bags',
-    icon: <Handbag />,
-    intlId: 'navBagsMenu',
-  },
-  {
-    link: CLOTHING,
-    label: 'Clothing',
+    link: MEN,
+    label: 'Men',
     icon: <DressIcon />,
-    intlId: 'navClothingMenu',
+    intlId: 'navMenMenu',
   },
   {
-    link: FURNITURE_PAGE,
-    label: 'Furniture',
-    icon: <FurnitureIcon width='15px' height='13px' />,
-    intlId: 'navFurnitureMenu',
+    link: WOMEN,
+    label: 'Women',
+    icon: <DressIcon />,
+    intlId: 'navWomenMenu',
   },
   {
-    link: BOOK_PAGE,
-    label: 'Book',
-    icon: <BookIcon width='15px' height='13px' />,
-    intlId: 'navBookMenu',
-  },
-  {
-    link: MEDICINE_PAGE,
-    label: 'Medicine',
-    icon: <MedicineIcon width='15px' height='13px' />,
-    intlId: 'navMedicineMenu',
+    link: KIDS,
+    label: 'Kids',
+    icon: <DressIcon />,
+    intlId: 'navKidsMenu',
   },
 ];
 

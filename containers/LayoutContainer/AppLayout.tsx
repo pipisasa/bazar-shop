@@ -32,7 +32,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
   const isHomePage = isCategoryPage(pathname);
   return (
     <LayoutWrapper className={`layoutWrapper ${className}`}>
-      {(mobile || tablet) && (
+      {(mobile || tablet || !true) && (
         <Sticky enabled={isSticky} innerZ={1001}>
           <MobileHeader
             className={`${isSticky ? 'sticky' : 'unSticky'} ${

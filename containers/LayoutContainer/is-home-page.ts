@@ -1,20 +1,14 @@
 import {
   HOME_PAGE,
-  CLOTHING,
-  MAKEUP_PAGE,
-  BAGS_PAGE,
-  FURNITURE_PAGE,
-  BOOK_PAGE,
-  MEDICINE_PAGE,
+  MEN,
+  WOMEN,
+  KIDS
 } from 'constants/navigation';
 const arr = [
   HOME_PAGE,
-  CLOTHING,
-  MAKEUP_PAGE,
-  BAGS_PAGE,
-  FURNITURE_PAGE,
-  BOOK_PAGE,
-  MEDICINE_PAGE,
+  MEN,
+  WOMEN,
+  KIDS
 ];
 export function isCategoryPage(pathname) {
   return arr.includes(pathname);

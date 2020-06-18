@@ -1,40 +1,22 @@
 import {
-  CLOTHING,
-  MAKEUP_PAGE,
-  BAGS_PAGE,
-  FURNITURE_PAGE,
-  BOOK_PAGE,
-  MEDICINE_PAGE
+  MEN,
+  WOMEN,
+  KIDS
 } from './navigation';
 export default [
   {
-    link: MAKEUP_PAGE,
+    link: MEN,
     icon: '',
-    label: 'Makeup'
+    label: 'Men'
   },
   {
-    link: BAGS_PAGE,
+    link: WOMEN,
     icon: '',
-    label: 'Bags'
+    label: 'Women'
   },
   {
-    link: CLOTHING,
+    link: KIDS,
     icon: '',
-    label: 'Clothing'
+    label: 'Kids'
   },
-  {
-    link: BOOK_PAGE,
-    icon: '',
-    label: 'Book'
-  },
-  {
-    link: FURNITURE_PAGE,
-    icon: '',
-    label: 'Furniture'
-  },
-  {
-    link: MEDICINE_PAGE,
-    icon: '',
-    label: 'Medicine'
-  }
 ];

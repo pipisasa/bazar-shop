@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 const Index: React.FC = () => {
   const router = useRouter();
   React.useEffect(() => {
-    router.replace('/clothing');
+    router.replace('/men');
   });
   return (
     <Head>

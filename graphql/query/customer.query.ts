@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const GET_LOGGED_IN_CUSTOMER = gql`
   query getUser($id: String = "1") {
-    me(id: $id) {
+    me {
       # id
       # name
       # email
@@ -25,8 +25,6 @@ export const GET_LOGGED_IN_CUSTOMER = gql`
       #   lastFourDigit
       # }
       id
-      firstName
-      lastName
       email
     }
   }
