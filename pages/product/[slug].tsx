@@ -29,6 +29,7 @@ const ProductPage: NextPage<Props> = ({ deviceType }) => {
   const { data, error, loading } = useQuery(GET_PRODUCT_DETAILS, {
     variables: { slug },
   });
+  console.log(data)
 
   if (loading) {
     return <div>loading...</div>;

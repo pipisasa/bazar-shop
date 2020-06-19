@@ -98,7 +98,7 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
           <ProductTitlePriceWrapper>
             <ProductTitle>{product.title}</ProductTitle>
             <ProductPriceWrapper>
-              {product.discountInPercent ? (
+              {product.discountPercent ? (
                 <SalePrice>
                   {CURRENCY}
                   {product.price}

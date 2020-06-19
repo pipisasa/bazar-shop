@@ -4,8 +4,8 @@ import { Modal } from '@redq/reuse-modal';
 import { withApollo } from 'helper/apollo';
 import { SEO } from 'components/seo';
 import StoreNav from 'components/StoreNav/StoreNav';
-import Carousel from 'components/Carousel/Carousel';
-import Banner, { BannerCarousel } from 'containers/Banner/Banner';
+// import Carousel from 'components/Carousel/Carousel';
+import { BannerCarousel } from 'containers/Banner/Banner';
 import Sidebar from 'containers/Sidebar/Sidebar';
 import Products from 'containers/Products/Products';
 import CartPopUp from 'containers/Cart/CartPopUp';
@@ -13,14 +13,10 @@ import {
   MainContentArea,
   SidebarSection,
   ContentSection,
-  OfferSection,
+  // OfferSection,
   MobileCarouselDropdown,
 } from 'styled/pages.style';
 // Static Data Import Here
-import OFFERS from 'data/offers';
-import ClothsBannerImg from 'image/Cloths.png';
-import BagsBannerImg from 'image/Bags.png';
-import FurnitureBannerImg from 'image/furniture.png';
 import storeType from 'constants/storeType';
 
 const PAGE_TYPE = 'clothing';

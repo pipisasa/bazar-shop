@@ -73,23 +73,23 @@ const Header: React.FC<Props> = ({ className }) => {
       query: updatedQuery,
     });
   };
-  const showSearch = isCategoryPage(pathname);
+  // const showSearch = isCategoryPage(pathname);
   return (
     <HeaderWrapper className={className}>
       <LeftMenu logo={LogoImage} />
-      {showSearch && (
-        <SearchBox
-          className="headerSearch"
-          handleSearch={(value: any) => onSearch(value)}
-          onClick={onClickHandler}
-          placeholder="Search anything..."
-          hideType={true}
-          minimal={true}
-          showSvg={true}
-          style={{ width: '100%' }}
-          value={text || ''}
-        />
-      )}
+      {/* {showSearch && (
+      )} */}
+      <SearchBox
+        className="headerSearch"
+        handleSearch={(value: any) => onSearch(value)}
+        onClick={onClickHandler}
+        placeholder="Search anything..."
+        hideType={true}
+        minimal={true}
+        showSvg={true}
+        style={{ width: '100%' }}
+        value={text || ''}
+      />
       <RightMenu
         isAuthenticated={isAuthenticated}
         onJoin={handleJoin}

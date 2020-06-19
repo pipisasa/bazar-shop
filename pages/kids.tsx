@@ -4,8 +4,8 @@ import { Modal } from '@redq/reuse-modal';
 import { withApollo } from 'helper/apollo';
 import { SEO } from 'components/seo';
 import StoreNav from 'components/StoreNav/StoreNav';
-import Carousel from 'components/Carousel/Carousel';
-import Banner, { BannerCarousel } from 'containers/Banner/Banner';
+// import Carousel from 'components/Carousel/Carousel';
+import { BannerCarousel } from 'containers/Banner/Banner';
 import Sidebar from 'containers/Sidebar/Sidebar';
 import Products from 'containers/Products/Products';
 import CartPopUp from 'containers/Cart/CartPopUp';
@@ -13,14 +13,10 @@ import {
   MainContentArea,
   SidebarSection,
   ContentSection,
-  OfferSection,
+  // OfferSection,
   MobileCarouselDropdown,
 } from 'styled/pages.style';
 // Static Data Import Here
-import OFFERS from 'data/offers';
-import ClothsBannerImg from 'image/Cloths.png';
-import BagsBannerImg from 'image/Bags.png';
-import FurnitureBannerImg from 'image/furniture.png';
 import storeType from 'constants/storeType';
 
 const PAGE_TYPE = 'clothing';
@@ -47,18 +43,15 @@ function WomenClothsPage({ deviceType }) {
           data={[
             {
               id: '1',
-              imgSrc: ClothsBannerImg,
-              alt: 'Offer 1',
+              color: '#e286c8'
             },
             {
               id: '2',
-              imgSrc: BagsBannerImg,
-              alt: 'Offer 2',
+              color:'#f59381'
             },
             {
               id: '3',
-              imgSrc: FurnitureBannerImg,
-              alt: 'Offer 3',
+              color: '#fcb46d',
             }]}
           />
         {/* <Banner
@@ -73,11 +66,11 @@ function WomenClothsPage({ deviceType }) {
               <StoreNav items={storeType} />
               <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
             </MobileCarouselDropdown>
-            <OfferSection>
+            {/* <OfferSection>
               <div style={{ margin: '0 -10px' }}>
                 <Carousel deviceType={deviceType} data={OFFERS} />
               </div>
-            </OfferSection>
+            </OfferSection> */}
             <MainContentArea>
               <SidebarSection>
                 <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
@@ -97,11 +90,11 @@ function WomenClothsPage({ deviceType }) {
           <MainContentArea>
             <StoreNav items={storeType} />
             <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
-            <OfferSection>
+            {/* <OfferSection>
               <div style={{ margin: '0 -10px' }}>
                 <Carousel deviceType={deviceType} data={OFFERS} />
               </div>
-            </OfferSection>
+            </OfferSection> */}
             <ContentSection style={{ width: '100%' }}>
               <Products
                 type={PAGE_TYPE}

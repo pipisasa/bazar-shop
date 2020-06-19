@@ -23,7 +23,7 @@ export const RightMenu: React.FC<Props> = ({
 }) => {
   return (
     <RightMenuBox>
-      <NavLink
+      {/* <NavLink
         className="menu-item"
         href={OFFER_PAGE}
         label="Offer"
@@ -36,7 +36,7 @@ export const RightMenu: React.FC<Props> = ({
         intlId="navlinkHelp"
         iconClass="menu-icon"
         icon={<HelpIcon />}
-      />
+      /> */}
       <LanguageSwitcher />
 
       {!isAuthenticated ? (

@@ -87,7 +87,7 @@ const HeaderWrapper = styled.header`
     animation: ${positionAnim} 0.3s ease;
     .headerSearch {
       animation: ${hideSearch} 0.3s ease;
-      display: none;
+      /* display: none; */
     }
   }
 

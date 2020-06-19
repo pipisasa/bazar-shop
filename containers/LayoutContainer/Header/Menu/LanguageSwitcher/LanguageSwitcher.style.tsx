@@ -46,7 +46,7 @@ export const SelectedItem = styled.button`
 `;
 
 export const Flag = styled.div`
-  margin-right: 7px;
+  // margin-right: 7px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;

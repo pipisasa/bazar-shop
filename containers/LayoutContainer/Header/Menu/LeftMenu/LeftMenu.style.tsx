@@ -62,7 +62,7 @@ export const SelectedItem = styled.button`
   padding-right: ${themeGet('space.4', '15')}px;
   border-radius: ${themeGet('radius.3', '6')}px;
   outline: 0;
-  min-width: 150px;
+  min-width: 100px;
   cursor: pointer;
 
   span {

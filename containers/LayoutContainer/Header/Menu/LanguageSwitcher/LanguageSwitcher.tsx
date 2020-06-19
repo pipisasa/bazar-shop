@@ -50,12 +50,12 @@ const LanguageSwitcher: React.FC<{}> = () => {
         handler={
           <SelectedItem>
             <Flag>{selectedLanguage?.icon}</Flag>
-            <span>
+            {/* <span>
               <FormattedMessage
                 id={selectedLanguage?.intlLangName}
                 defaultMessage={selectedLanguage?.label}
               />
-            </span>
+            </span> */}
           </SelectedItem>
         }
         content={<LanguageMenu onClick={languageChangeHandler} />}

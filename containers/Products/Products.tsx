@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import gql from 'graphql-tag';
 import { openModal, closeModal } from '@redq/reuse-modal';
 import ProductCard from 'components/ProductCard/ProductCard';
 import {
@@ -19,40 +18,10 @@ import Loader from 'components/Loader/Loader';
 import Placeholder from 'components/Placeholder/Placeholder';
 import Fade from 'react-reveal/Fade';
 import NoResultFound from 'components/NoResult/NoResult';
-import fakeDB from '../../helper/fakeDB';
+import { GET_PRODUCTS } from 'graphql/query/product.query';
+// import fakeDB from '../../helper/fakeDB';
 
 const QuickView = dynamic(() => import('../QuickView/QuickView'));
-
-const GET_PRODUCTS = gql`
-  query {
-    productList{
-      id
-      title
-      slug
-      description
-      Type
-      category{
-        id
-        title
-        slug
-        parent{
-          id
-          title
-          slug
-        }
-      }
-      unit
-      image
-      price
-      salePrice
-      discountPercent
-      createdAt
-      images{
-        image
-      }
-    }
-  }
-`;
 
 type ProductsProps = {
   deviceType?: {
@@ -72,7 +41,7 @@ export const Products: React.FC<ProductsProps> = ({
 }) => {
   const router = useRouter();
   const [loadingMore, toggleLoading] = useState(false);
-  const { data, error, loading, fetchMore } = useQuery(GET_PRODUCTS, {
+  let { data, error, loading, fetchMore } = useQuery(GET_PRODUCTS, {
     // variables: {
     //   type: type,
     //   text: router.query.text,
@@ -81,7 +50,6 @@ export const Products: React.FC<ProductsProps> = ({
     //   limit: fetchLimit,
     // },
   });
-  
 // ------------------------------------------------------------------------------------------
   // const data = {
   //   products:{
@@ -184,6 +152,7 @@ export const Products: React.FC<ProductsProps> = ({
       <ProductsRow>
         {data.productList.map((item: any, index: number) => (
           <ProductsCol key={index}>
+            {(()=>{item.discountInPercent = item.discountPercent})()}
             <ProductCardWrapper>
               <Fade
                 duration={800}
@@ -198,7 +167,7 @@ export const Products: React.FC<ProductsProps> = ({
                   currency={CURRENCY}
                   price={item.price}
                   salePrice={item.salePrice}
-                  discountInPercent={item.discountInPercent}
+                  discountInPercent={item.discountPercent}
                   data={item}
                   deviceType={deviceType}
                   onClick={() =>
