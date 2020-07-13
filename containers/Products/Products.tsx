@@ -42,13 +42,13 @@ export const Products: React.FC<ProductsProps> = ({
   const router = useRouter();
   const [loadingMore, toggleLoading] = useState(false);
   let { data, error, loading, fetchMore } = useQuery(GET_PRODUCTS, {
-    // variables: {
-    //   type: type,
-    //   text: router.query.text,
-    //   category: router.query.category,
-    //   offset: 0,
-    //   limit: fetchLimit,
-    // },
+    variables: {
+      type: type,
+      text: router.query.text,
+      category: router.query.category,
+      offset: 0,
+      limit: fetchLimit,
+    },
   });
 // ------------------------------------------------------------------------------------------
   // const data = {

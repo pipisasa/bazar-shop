@@ -5,12 +5,10 @@ export const GET_CATEGORIES = gql`
     allCategories{
       id
       title
-      icon
       slug
-      children{
+      parent{
         id
         title
-        icon
         slug
       }
     }

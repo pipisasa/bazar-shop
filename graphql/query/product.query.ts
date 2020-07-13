@@ -96,30 +96,36 @@ export const GET_PRODUCT_DETAILS = gql`
 `;
 export const GET_PRODUCTS = gql`
   query {
-    productList{
-      id
-      title
-      slug
-      description
-      Type
-      category{
+    products{
+      page
+      pages
+      hasNext
+      hasPrev
+      objects{
         id
-        title
         slug
-        parent{
+        title
+        description
+        Type
+        category{
           id
           title
           slug
+          parent{
+            id
+            title
+            slug
+          }
         }
-      }
-      unit
-      image
-      price
-      salePrice
-      discountPercent
-      createdAt
-      images{
+        unit
         image
+        price
+        salePrice
+        discountPercent
+        createdAt
+        images{
+          image
+        }
       }
     }
   }

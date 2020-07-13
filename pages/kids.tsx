@@ -19,7 +19,7 @@ import {
 // Static Data Import Here
 import storeType from 'constants/storeType';
 
-const PAGE_TYPE = 'clothing';
+const PAGE_TYPE = 'kids';
 
 function WomenClothsPage({ deviceType }) {
   const { query } = useRouter();
