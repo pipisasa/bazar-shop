@@ -95,18 +95,32 @@ export const GET_PRODUCT_DETAILS = gql`
   }
 `;
 export const GET_PRODUCTS = gql`
-  query {
-    products{
-      page
-      pages
-      hasNext
-      hasPrev
-      objects{
+  query(
+    $offset: Int
+    $limit: Int
+    $type: String
+    $text: String
+    $category: String
+  ){
+    products(
+      offset:$offset
+      limit:$limit
+      Type:$type
+      text:$text
+      category:$category
+    ){
+      hasMore
+      total
+      items{
         id
         slug
         title
         description
-        Type
+        Type{
+          id
+          title
+          slug
+        }
         category{
           id
           title

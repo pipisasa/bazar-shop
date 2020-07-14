@@ -84,10 +84,25 @@ const HeaderWrapper = styled.header`
   }
 
   &.unSticky {
+    background-color: #fff;
     animation: ${positionAnim} 0.3s ease;
     .headerSearch {
+
       animation: ${hideSearch} 0.3s ease;
       /* display: none; */
+      form {
+        background-color: ${themeGet('colors.lightMediumColor', '#F3F3F3')};
+
+        input {
+          background-color: ${themeGet('colors.lightMediumColor', '#F3F3F3')};
+        }
+      }
+
+      @media only screen and (min-width: 991px) and (max-width: 1200px) {
+        .buttonText {
+          display: none;
+        }
+      }
     }
   }
 

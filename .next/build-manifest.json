@@ -9,6 +9,10 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
+    "/": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
@@ -20,11 +24,31 @@
     "/_polyfills": [
       "static/runtime/polyfills.js"
     ],
-    "/kids": [
+    "/checkout": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/men": [
+    "/checkout-alternative": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/help": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/index": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/offer": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/order": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/profile": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

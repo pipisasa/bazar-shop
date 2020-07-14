@@ -22,6 +22,7 @@ import { useRouter } from 'next/router';
 import Logo from 'components/Logo/Logo';
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import { DrawerWrapper } from '../../Header.style';
 const MENU_ITEMS = [
   {
     link: MEN,

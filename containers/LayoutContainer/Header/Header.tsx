@@ -7,10 +7,12 @@ import { AuthContext } from 'contexts/auth/auth.context';
 import AuthenticationForm from '../../SignInOutForm/Form';
 import { RightMenu } from './Menu/RightMenu/RightMenu';
 import { LeftMenu } from './Menu/LeftMenu/LeftMenu';
-import HeaderWrapper from './Header.style';
+import HeaderWrapper, { DrawerWrapper } from './Header.style';
 import LogoImage from 'image/logo.svg';
 import UserImage from 'image/user.jpg';
-import { isCategoryPage } from '../is-home-page';
+// import { isCategoryPage } from '../is-home-page';
+import MobileDrawer from './MobileDrawer';
+import { DrawerProvider } from 'contexts/drawer/drawer.provider';
 
 type Props = {
   className?: string;
@@ -76,27 +78,32 @@ const Header: React.FC<Props> = ({ className }) => {
   // const showSearch = isCategoryPage(pathname);
   return (
     <HeaderWrapper className={className}>
-      <LeftMenu logo={LogoImage} />
-      {/* {showSearch && (
-      )} */}
-      <SearchBox
-        className="headerSearch"
-        handleSearch={(value: any) => onSearch(value)}
-        onClick={onClickHandler}
-        placeholder="Search anything..."
-        hideType={true}
-        minimal={true}
-        showSvg={true}
-        style={{ width: '100%' }}
-        value={text || ''}
-      />
-      <RightMenu
-        isAuthenticated={isAuthenticated}
-        onJoin={handleJoin}
-        onLogout={handleLogout}
-        avatar={UserImage}
-      />
-    </HeaderWrapper>
+      <DrawerProvider>
+          <DrawerWrapper>
+            <MobileDrawer />
+          </DrawerWrapper>
+        </DrawerProvider>
+        <LeftMenu logo={LogoImage} />
+        {/* {showSearch && (
+        )} */}
+        <SearchBox
+          className="headerSearch"
+          handleSearch={(value: any) => onSearch(value)}
+          onClick={onClickHandler}
+          placeholder="Search anything..."
+          hideType={true}
+          minimal={true}
+          showSvg={true}
+          style={{ width: '100%' }}
+          value={text || ''}
+        />
+        <RightMenu
+          isAuthenticated={isAuthenticated}
+          onJoin={handleJoin}
+          onLogout={handleLogout}
+          avatar={UserImage}
+        />
+      </HeaderWrapper>
   );
 };
 
