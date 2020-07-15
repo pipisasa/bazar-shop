@@ -24,31 +24,7 @@
     "/_polyfills": [
       "static/runtime/polyfills.js"
     ],
-    "/checkout": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/checkout-alternative": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/help": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/index": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/offer": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/order": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/profile": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

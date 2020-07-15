@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { HOME_PAGE, MEN, WOMEN, KIDS } from 'constants/navigation';\nvar arr = [HOME_PAGE, MEN, WOMEN, KIDS];\nexport function isCategoryPage(pathname) {\n  return arr.includes(pathname);\n}","map":null,"metadata":{},"sourceType":"module"}
