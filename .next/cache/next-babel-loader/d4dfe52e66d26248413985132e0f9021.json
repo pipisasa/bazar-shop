@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { MEN, WOMEN, KIDS } from './navigation';\nexport default [{\n  link: MEN,\n  icon: '',\n  label: 'Men'\n}, {\n  link: WOMEN,\n  icon: '',\n  label: 'Women'\n}, {\n  link: KIDS,\n  icon: '',\n  label: 'Kids'\n}];","map":null,"metadata":{},"sourceType":"module"}
