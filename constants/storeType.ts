@@ -1,22 +1,10 @@
 import {
-  MEN,
-  WOMEN,
-  KIDS
+  PRODUCTS
 } from './navigation';
 export default [
   {
-    link: MEN,
+    link: PRODUCTS,
     icon: '',
-    label: 'Men'
-  },
-  {
-    link: WOMEN,
-    icon: '',
-    label: 'Women'
-  },
-  {
-    link: KIDS,
-    icon: '',
-    label: 'Kids'
+    label: 'Products'
   },
 ];

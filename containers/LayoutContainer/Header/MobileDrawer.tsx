@@ -22,6 +22,7 @@ import {
   DrawerMenu,
   DrawerMenuItem,
   UesrOptionMenu,
+  DrawerMenuHeading,
 } from './Header.style';
 import UserImage from 'image/user.jpg';
 
@@ -34,13 +35,14 @@ import {
   HELP_PAGE,
   OFFER_PAGE,
 } from 'constants/navigation';
+import { TypeMenu } from './TypeMenu';
 
 const DrawerMenuItems = [
   {
     id: 1,
     intlLabelId: 'navLinkHome',
     label: 'Home',
-    href: '/',
+    href: '/products',
   },
   {
     id: 2,
@@ -182,7 +184,12 @@ const MobileDrawer: React.FunctionComponent = () => {
             )}
           </DrawerProfile>
 
+          <TypeMenu onClick={toggleHandler}/>
+
           <DrawerMenu>
+            <DrawerMenuHeading className="drawer-menu-heading">
+              Pages
+            </DrawerMenuHeading>
             {DrawerMenuItems.map((item) => (
               <DrawerMenuItem key={item.id}>
                 <NavLink

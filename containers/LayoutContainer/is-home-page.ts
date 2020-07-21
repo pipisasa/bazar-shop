@@ -1,14 +1,10 @@
 import {
   HOME_PAGE,
-  MEN,
-  WOMEN,
-  KIDS
+  PRODUCTS,
 } from 'constants/navigation';
 const arr = [
   HOME_PAGE,
-  MEN,
-  WOMEN,
-  KIDS
+  PRODUCTS
 ];
 export function isCategoryPage(pathname) {
   return arr.includes(pathname);

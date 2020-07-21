@@ -11,9 +11,9 @@ const BannerWrapper = styled.div`
   background-size: 100%;
   background-position: bottom center;
   background-repeat: no-repeat;
-  background-color: #f7f7f7;
+  background-color: #fff;
   background-size: cover;
-  padding: 0 10px;
+  padding: 30px 10px 0 10px;
 
   // @media (max-width: 1400px) {
   //   min-height: 100vh;

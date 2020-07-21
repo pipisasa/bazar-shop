@@ -92,5 +92,15 @@ export const TreeMenu: React.FC<Props> = ({
       );
     });
   };
-  return <>{handler(data)}</>;
+  return <>
+    <Frame depth="child">
+      <Header 
+        open={
+          active === ""
+        } depth="child">
+        <Title onClick={()=>onClick("")}>All</Title>
+      </Header>
+    </Frame>
+    {handler(data)}
+  </>;
 };
