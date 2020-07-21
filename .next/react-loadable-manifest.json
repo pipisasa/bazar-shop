@@ -1,0 +1,82 @@
+{
+  "../QuickView/QuickView": [
+    {
+      "id": "./components/MultiCarousel/MultiCarousel.tsx",
+      "name": "./components/MultiCarousel/MultiCarousel.tsx",
+      "file": "static/chunks/3.js",
+      "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./components/Truncate/Truncate.tsx",
+      "name": "./components/Truncate/Truncate.tsx",
+      "file": "static/chunks/3.js",
+      "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./containers/QuickView/QuickView.style.tsx",
+      "name": "./containers/QuickView/QuickView.style.tsx",
+      "file": "static/chunks/3.js",
+      "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./containers/QuickView/QuickView.tsx",
+      "name": "./containers/QuickView/QuickView.tsx",
+      "file": "static/chunks/3.js",
+      "publicPath": "static/chunks/3.js"
+    }
+  ],
+  "./Header/MobileHeader": [
+    {
+      "id": "./containers/LayoutContainer/Header/MobileHeader.tsx",
+      "name": "./containers/LayoutContainer/Header/MobileHeader.tsx",
+      "file": "static/chunks/0.js",
+      "publicPath": "static/chunks/0.js"
+    },
+    {
+      "id": "./helper/debounce.ts",
+      "name": "./helper/debounce.ts",
+      "file": "static/chunks/0.js",
+      "publicPath": "static/chunks/0.js"
+    },
+    {
+      "id": "./helper/useComponentSize.js",
+      "name": "./helper/useComponentSize.js",
+      "file": "static/chunks/0.js",
+      "publicPath": "static/chunks/0.js"
+    }
+  ],
+  "./dev/noop": [
+    {
+      "id": "./node_modules/next/dist/client/dev/noop.js",
+      "name": "./node_modules/next/dist/client/dev/noop.js",
+      "file": "static/chunks/1.js",
+      "publicPath": "static/chunks/1.js"
+    }
+  ],
+  "@apollo/react-ssr": [
+    {
+      "id": "./node_modules/@apollo/react-ssr/lib/react-ssr.esm.js",
+      "name": "./node_modules/@apollo/react-ssr/lib/react-ssr.esm.js",
+      "file": "static/chunks/2.js",
+      "publicPath": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/@apollo/react-ssr/node_modules/@apollo/react-hooks/lib/react-hooks.esm.js",
+      "name": "./node_modules/@apollo/react-ssr/node_modules/@apollo/react-hooks/lib/react-hooks.esm.js",
+      "file": "static/chunks/2.js",
+      "publicPath": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/react-dom/cjs/react-dom-server.browser.development.js",
+      "name": "./node_modules/react-dom/cjs/react-dom-server.browser.development.js",
+      "file": "static/chunks/2.js",
+      "publicPath": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/react-dom/server.browser.js",
+      "name": "./node_modules/react-dom/server.browser.js",
+      "file": "static/chunks/2.js",
+      "publicPath": "static/chunks/2.js"
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import NavLink from 'components/NavLink/NavLink';
+// import NavLink from 'components/NavLink/NavLink';
 import Button from 'components/Button/Button';
 import Popover from 'components/Popover/Popover';
-import { OFFER_PAGE, HELP_PAGE } from 'constants/navigation';
+// import { OFFER_PAGE, HELP_PAGE } from 'constants/navigation';
 import { AuthorizedMenu } from '../AuthorizedMenu';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
-import { HelpIcon } from 'components/AllSvgIcon';
+// import { HelpIcon } from 'components/AllSvgIcon';
 import { RightMenuBox } from './RightMenu.style';
 
 type Props = {

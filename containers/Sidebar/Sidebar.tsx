@@ -50,9 +50,9 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
   const { isRtl } = useLocale();
 
   const handleCategorySelection = (slug: string) => {
-    const updatedQuery = state.text
-      ? { text: state.text, category: slug }
-      : { category: slug };
+    const updatedQuery:any = {};
+    if(state.text) updatedQuery.text = state.text;
+    if(slug || typeof slug === 'string') updatedQuery.category = slug
     router.push({
       pathname: pathname,
       query: updatedQuery,
