@@ -109,7 +109,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
   } = useCart();
   const [loading, setLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
-  const { address, contact, card, schedules } = state;
+  const { address, contacts, cards, schedules } = state;
 
   const [deleteContactMutation] = useMutation(DELETE_CONTACT);
   const [deleteAddressMutation] = useMutation(DELETE_ADDRESS);
@@ -135,8 +135,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
       calculatePrice() > 0 &&
       cartItemsCount > 0 &&
       address.length &&
-      contact.length &&
-      card.length &&
+      contacts.length &&
+      cards.length &&
       schedules.length
     ) {
       setIsValid(true);
@@ -232,7 +232,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                       title={item.name}
                       content={item.info}
                       name='address'
-                      checked={item.type === 'primary'}
+                      checked={item.Type === 'primary'}
                       onChange={() =>
                         dispatch({
                           type: 'SET_PRIMARY_ADDRESS',
@@ -283,7 +283,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                       title={item.title}
                       content={item.time_slot}
                       name='schedule'
-                      checked={item.type === 'primary'}
+                      checked={item.Type === 'primary'}
                       withActionButtons={false}
                       onChange={() =>
                         dispatch({
@@ -307,14 +307,14 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
               </Heading>
               <ButtonGroup>
                 <RadioGroup
-                  items={contact}
+                  items={contacts}
                   component={(item: any) => (
                     <RadioCard
                       id={item.id}
                       key={item.id}
-                      title={item.type}
+                      title={item.Type}
                       content={item.number}
-                      checked={item.type === 'primary'}
+                      checked={item.Type === 'primary'}
                       onChange={() =>
                         dispatch({
                           type: 'SET_PRIMARY_CONTACT',
@@ -361,7 +361,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
               <PaymentGroup
                 name='payment'
                 deviceType={deviceType}
-                items={card}
+                items={cards}
                 onEditDeleteField={(item: any, type: string) =>
                   handleEditDelete(item, type, 'payment')
                 }

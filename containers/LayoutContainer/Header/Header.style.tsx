@@ -84,10 +84,25 @@ const HeaderWrapper = styled.header`
   }
 
   &.unSticky {
+    background-color: #fff;
     animation: ${positionAnim} 0.3s ease;
     .headerSearch {
+
       animation: ${hideSearch} 0.3s ease;
       /* display: none; */
+      form {
+        background-color: ${themeGet('colors.lightMediumColor', '#F3F3F3')};
+
+        input {
+          background-color: ${themeGet('colors.lightMediumColor', '#F3F3F3')};
+        }
+      }
+
+      @media only screen and (min-width: 991px) and (max-width: 1200px) {
+        .buttonText {
+          display: none;
+        }
+      }
     }
   }
 
@@ -482,9 +497,21 @@ export const UserDetails = styled.div`
   }
 `;
 
-export const DrawerMenu = styled.div`
-  padding: 40px 0;
-`;
+export const DrawerMenuHeading = styled.div`
+  margin: 40px 0 0 0;
+  border-bottom: 1px solid ${themeGet('colors.lightDarkColor', '#E6E6E6')};
+  display: block;
+  padding: 5px 45px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: ${themeGet('colors.darkBold', '#0D1136')};
+  margin-bottom: 19px;
+  position: relative;
+  transition: 0.15s ease-in-out;
+`
+export const DrawerTypeMenu = styled.div``;
+export const DrawerMenu = styled.div``;
 
 export const DrawerMenuItem = styled.div`
   &:last-child {

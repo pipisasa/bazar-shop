@@ -6,6 +6,7 @@ export const LeftMenuBox = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
+  padding-left: 20px;
 `;
 
 export const MainMenu = styled.div`

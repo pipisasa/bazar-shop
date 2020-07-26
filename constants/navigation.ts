@@ -1,7 +1,5 @@
 export const HOME_PAGE = '/';
-export const MEN = '/men';
-export const WOMEN = '/women';
-export const KIDS = '/kids';
+export const PRODUCTS = '/products';
 export const DETAILS_PAGE = '/detail';
 export const PROCEED_TO_CHECKOUT_PAGE = '/checkout';
 export const ALTERNATIVE_CHECKOUT_PAGE = '/checkout-alternative';

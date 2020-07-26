@@ -20,7 +20,7 @@ const PaymentCard: React.FunctionComponent<PaymentCardProps & any> = ({
   id,
   cardType,
   lastFourDigit,
-  type,
+  Type,
   color,
 }) => {
   function handleChange() {
@@ -29,6 +29,8 @@ const PaymentCard: React.FunctionComponent<PaymentCardProps & any> = ({
   function handleDelete() {
     onDelete();
   }
+  const {firstName, lastName} = name;
+  console.log()
   return (
     <Wrapper
       htmlFor={`payment-card-${id}`}
@@ -37,10 +39,10 @@ const PaymentCard: React.FunctionComponent<PaymentCardProps & any> = ({
       <input
         type='radio'
         id={`payment-card-${id}`}
-        name={name}
+        name={firstName + " " + lastName}
         value={`payment-card-${id}`}
         onChange={handleChange}
-        checked={type === 'primary'}
+        checked={Type === 'primary'}
       />
 
       <Card
@@ -48,7 +50,7 @@ const PaymentCard: React.FunctionComponent<PaymentCardProps & any> = ({
         cardType={cardType}
         lastFourDigit={lastFourDigit}
         color={color}
-        name={name}
+        name={firstName + " " + lastName}
       />
 
       <DeleteButton

@@ -1,7 +1,7 @@
 import React from 'react';
 import NavLink from '../NavLink/NavLink';
 import StoreNavWrapper, { StoreNavLinks } from './StoreNav.style';
-import { GroceryIcon, MakeupIcon, DressIcon, Handbag } from '../AllSvgIcon';
+// import { GroceryIcon, MakeupIcon, DressIcon, Handbag } from '../AllSvgIcon';
 
 type StoreNavProps = {
   className?: string;

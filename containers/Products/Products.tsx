@@ -42,25 +42,15 @@ export const Products: React.FC<ProductsProps> = ({
   const router = useRouter();
   const [loadingMore, toggleLoading] = useState(false);
   let { data, error, loading, fetchMore } = useQuery(GET_PRODUCTS, {
-    // variables: {
-    //   type: type,
-    //   text: router.query.text,
-    //   category: router.query.category,
-    //   offset: 0,
-    //   limit: fetchLimit,
-    // },
+    variables:{
+      type: router.query.type,
+      offset: 0,
+      limit: fetchLimit,
+      text:router.query.text,
+      category:router.query.category
+    },
   });
-// ------------------------------------------------------------------------------------------
-  // const data = {
-  //   products:{
-  //     hasMore:false,
-  //     items: fakeDB
-  //   },
-  // };
-  // const error = false;
-  // const loading = false;
-  // const fetchMore = (obj)=>{};
-// ------------------------------------------------------------------------------------------
+  console.log(data)
   // Quick View Modal
   const handleModalClose = () => {
     const as = router.asPath;
@@ -121,14 +111,14 @@ export const Products: React.FC<ProductsProps> = ({
   }
 
   if (error){return <div>{error.message}</div>};
-  if (!data || !data.productList || data.productList.length === 0) {
+  if (!data || !data.products || data.products.items.length === 0) {
     return <NoResultFound />;
   }
   const handleLoadMore = () => {
     toggleLoading(true);
     fetchMore({
       variables: {
-        offset: Number(data.productList.length),
+        offset: Number(data.products.items.length),
         limit: fetchLimit,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
@@ -150,7 +140,7 @@ export const Products: React.FC<ProductsProps> = ({
   return (
     <>
       <ProductsRow>
-        {data.productList.map((item: any, index: number) => (
+        {data.products.items.map((item: any, index: number) => (
           <ProductsCol key={index}>
             {(()=>{item.discountInPercent = item.discountPercent})()}
             <ProductCardWrapper>

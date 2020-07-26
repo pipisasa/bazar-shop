@@ -23,7 +23,7 @@ function reducer(state: any, action: Action): any {
       if (action.payload.id) {
         return {
           ...state,
-          contact: state.contact.map((item: any) =>
+          contacts: state.contacts.map((item: any) =>
             item.id === action.payload.id
               ? { ...item, ...action.payload }
               : item
@@ -33,17 +33,17 @@ function reducer(state: any, action: Action): any {
       const newContact = {
         ...action.payload,
         id: uuidV4(),
-        type: state.contact.length === '0' ? 'primary' : 'secondary',
+        Type: state.contacts.length === '0' ? 'primary' : 'secondary',
       };
       return {
         ...state,
-        contact: [...state.contact, newContact],
+        contacts: [...state.contacts, newContact],
       };
 
     case 'DELETE_CONTACT':
       return {
         ...state,
-        contact: state.contact.filter(
+        contacts: state.contacts.filter(
           (item: any) => item.id !== action.payload
         ),
       };
@@ -61,7 +61,7 @@ function reducer(state: any, action: Action): any {
       const newAdress = {
         ...action.payload,
         id: uuidV4(),
-        type: state.address.length === '0' ? 'primary' : 'secondary',
+        Type: state.address.length === '0' ? 'primary' : 'secondary',
       };
       return {
         ...state,
@@ -77,27 +77,28 @@ function reducer(state: any, action: Action): any {
     case 'ADD_CARD':
       const newCard = {
         id: action.payload.id,
-        type: state.card.length === '0' ? 'primary' : 'secondary',
+        Type: state.cards.length === '0' ? 'primary' : 'secondary',
         cardType: action.payload.brand.toLowerCase(),
-        name: state.name,
+        firstName: state.firstName,
+        lastName: state.lastName,
         lastFourDigit: action.payload.last4,
       };
       return {
         ...state,
-        card: [newCard, ...state.card],
+        cards: [newCard, ...state.cards],
       };
     case 'DELETE_CARD':
       return {
         ...state,
-        card: state.card.filter((item: any) => item.id !== action.payload),
+        cards: state.cards.filter((item: any) => item.id !== action.payload),
       };
     case 'SET_PRIMARY_CONTACT':
       return {
         ...state,
-        contact: state.contact.map((item: any) =>
+        contacts: state.contacts.map((item: any) =>
           item.id === action.payload
-            ? { ...item, type: 'primary' }
-            : { ...item, type: 'secondary' }
+            ? { ...item, Type: 'primary' }
+            : { ...item, Type: 'secondary' }
         ),
       };
     case 'SET_PRIMARY_ADDRESS':
@@ -105,8 +106,8 @@ function reducer(state: any, action: Action): any {
         ...state,
         address: state.address.map((item: any) =>
           item.id === action.payload
-            ? { ...item, type: 'primary' }
-            : { ...item, type: 'secondary' }
+            ? { ...item, Type: 'primary' }
+            : { ...item, Type: 'secondary' }
         ),
       };
     case 'SET_PRIMARY_SCHEDULE':
@@ -114,17 +115,17 @@ function reducer(state: any, action: Action): any {
         ...state,
         schedules: state.schedules.map((item: any) =>
           item.id === action.payload
-            ? { ...item, type: 'primary' }
-            : { ...item, type: 'secondary' }
+            ? { ...item, Type: 'primary' }
+            : { ...item, Type: 'secondary' }
         ),
       };
     case 'SET_PRIMARY_CARD':
       return {
         ...state,
-        card: state.card.map((item: any) =>
+        cards: state.cards.map((item: any) =>
           item.id === action.payload
-            ? { ...item, type: 'primary' }
-            : { ...item, type: 'secondary' }
+            ? { ...item, Type: 'primary' }
+            : { ...item, Type: 'secondary' }
         ),
       };
     default:

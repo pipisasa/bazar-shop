@@ -7,10 +7,12 @@ import { AuthContext } from 'contexts/auth/auth.context';
 import AuthenticationForm from '../../SignInOutForm/Form';
 import { RightMenu } from './Menu/RightMenu/RightMenu';
 import { LeftMenu } from './Menu/LeftMenu/LeftMenu';
-import HeaderWrapper from './Header.style';
+import HeaderWrapper, { DrawerWrapper } from './Header.style';
 import LogoImage from 'image/logo.svg';
 import UserImage from 'image/user.jpg';
-import { isCategoryPage } from '../is-home-page';
+// import { isCategoryPage } from '../is-home-page';
+import MobileDrawer from './MobileDrawer';
+import { DrawerProvider } from 'contexts/drawer/drawer.provider';
 
 type Props = {
   className?: string;
@@ -76,6 +78,11 @@ const Header: React.FC<Props> = ({ className }) => {
   // const showSearch = isCategoryPage(pathname);
   return (
     <HeaderWrapper className={className}>
+      <DrawerProvider>
+        <DrawerWrapper>
+          <MobileDrawer />
+        </DrawerWrapper>
+      </DrawerProvider>
       <LeftMenu logo={LogoImage} />
       {/* {showSearch && (
       )} */}

@@ -75,6 +75,12 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
                 /\d/,
                 /\d/,
                 /\d/,
+                /\d?/,
+                /\d?/,
+                /\d?/,
+                /\d?/,
+                /\d?/,
+                /\d?/,
               ]}
               className='form-control'
               placeholder='Enter a phone number'
