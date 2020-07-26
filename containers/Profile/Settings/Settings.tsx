@@ -40,7 +40,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
   const [deleteAddressMutation] = useMutation(DELETE_ADDRESS);
   const [deletePaymentCardMutation] = useMutation(DELETE_CARD);
 
-  const { address, contact, card } = state;
+  const { address, contacts, cards } = state;
 
   const handleChange = (value: string, field: string) => {
     dispatch({ type: 'HANDLE_ON_INPUT_CHANGE', payload: { value, field } });
@@ -79,7 +79,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
           return await deletePaymentCardMutation({
             variables: { cardId: JSON.stringify(item.id) },
           });
-        case 'contact':
+        case 'contacts':
           dispatch({ type: 'DELETE_CONTACT', payload: item.id });
 
           return await deleteContactMutation({
@@ -98,9 +98,9 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
   };
 
   const handleSave = async () => {
-    const { name, email } = state;
+    const { firstName,lastName, email } = state;
     await updateMeMutation({
-      variables: { meInput: JSON.stringify({ name, email }) },
+      variables: { meInput: JSON.stringify({ firstName, lastName, email }) },
     });
   };
 
@@ -116,18 +116,29 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
           </Title>
         </HeadingSection>
         <Row style={{ alignItems: 'flex-end', marginBottom: '50px' }}>
-          <Col xs={12} sm={5} md={5} lg={5}>
+          <Col xs={12} sm={6} md={6} lg={6}>
             <Input
               type="text"
-              label="Name"
-              value={state.name}
-              onUpdate={(value: string) => handleChange(value, 'name')}
+              label="First Name"
+              value={state.firstName}
+              onUpdate={(value: string) => handleChange(value, 'firstName')}
               style={{ backgroundColor: '#F7F7F7' }}
-              intlInputLabelId="profileNameField"
+              intlInputLabelId="profileFirstNameField"
             />
           </Col>
 
-          <Col xs={12} sm={5} md={5} lg={5}>
+          <Col xs={12} sm={6} md={6} lg={6}>
+            <Input
+              type="text"
+              label="Last Name"
+              value={state.lastName}
+              onUpdate={(value: string) => handleChange(value, 'lastName')}
+              style={{ backgroundColor: '#F7F7F7' }}
+              intlInputLabelId="profileLastNameField"
+            />
+          </Col>
+
+          <Col xs={12} sm={6} md={6} lg={6} style={{marginTop:'30px'}}>
             <Input
               type="email"
               label="Email Address"
@@ -138,7 +149,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
             />
           </Col>
 
-          <Col xs={12} sm={2} md={2} lg={2}>
+          <Col xs={12} sm={6} md={6} lg={6}>
             <Button
               title="Save"
               onClick={handleSave}
@@ -160,14 +171,14 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
               </HeadingSection>
               <ButtonGroup>
                 <RadioGroup
-                  items={contact}
+                  items={contacts}
                   component={(item: any) => (
                     <RadioCard
                       id={item.id}
                       key={item.id}
-                      title={item.type}
+                      title={item.Type}
                       content={item.number}
-                      checked={item.type === 'primary'}
+                      checked={item.Type === 'primary'}
                       onChange={() =>
                         dispatch({
                           type: 'SET_PRIMARY_CONTACT',
@@ -221,7 +232,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
                       title={item.name}
                       content={item.info}
                       name="address"
-                      checked={item.type === 'primary'}
+                      checked={item.Type === 'primary'}
                       onChange={() =>
                         dispatch({
                           type: 'SET_PRIMARY_ADDRESS',
@@ -268,9 +279,9 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
               <PaymentGroup
                 name="payment"
                 deviceType={deviceType}
-                items={card}
-                onEditDeleteField={(item: any, type: string) =>
-                  handleEditDelete(item, type, 'payment')
+                items={cards}
+                onEditDeleteField={(item: any, Type: string) =>
+                  handleEditDelete(item, Type, 'payment')
                 }
                 onChange={(item: any) =>
                   dispatch({

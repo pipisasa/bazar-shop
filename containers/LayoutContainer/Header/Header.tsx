@@ -79,31 +79,31 @@ const Header: React.FC<Props> = ({ className }) => {
   return (
     <HeaderWrapper className={className}>
       <DrawerProvider>
-          <DrawerWrapper>
-            <MobileDrawer />
-          </DrawerWrapper>
-        </DrawerProvider>
-        <LeftMenu logo={LogoImage} />
-        {/* {showSearch && (
-        )} */}
-        <SearchBox
-          className="headerSearch"
-          handleSearch={(value: any) => onSearch(value)}
-          onClick={onClickHandler}
-          placeholder="Search anything..."
-          hideType={true}
-          minimal={true}
-          showSvg={true}
-          style={{ width: '100%' }}
-          value={text || ''}
-        />
-        <RightMenu
-          isAuthenticated={isAuthenticated}
-          onJoin={handleJoin}
-          onLogout={handleLogout}
-          avatar={UserImage}
-        />
-      </HeaderWrapper>
+        <DrawerWrapper>
+          <MobileDrawer />
+        </DrawerWrapper>
+      </DrawerProvider>
+      <LeftMenu logo={LogoImage} />
+      {/* {showSearch && (
+      )} */}
+      <SearchBox
+        className="headerSearch"
+        handleSearch={(value: any) => onSearch(value)}
+        onClick={onClickHandler}
+        placeholder="Search anything..."
+        hideType={true}
+        minimal={true}
+        showSvg={true}
+        style={{ width: '100%' }}
+        value={text || ''}
+      />
+      <RightMenu
+        isAuthenticated={isAuthenticated}
+        onJoin={handleJoin}
+        onLogout={handleLogout}
+        avatar={UserImage}
+      />
+    </HeaderWrapper>
   );
 };
 

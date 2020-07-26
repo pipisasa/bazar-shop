@@ -80,12 +80,12 @@ const DrawerMenuItems = [
     label: 'Help',
     href: HELP_PAGE,
   },
-  {
-    id: 8,
-    intlLabelId: 'navlinkOffer',
-    label: 'Offer',
-    href: OFFER_PAGE,
-  },
+  // {
+  //   id: 8,
+  //   intlLabelId: 'navlinkOffer',
+  //   label: 'Offer',
+  //   href: OFFER_PAGE,
+  // },
 ];
 
 const MobileDrawer: React.FunctionComponent = () => {

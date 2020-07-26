@@ -5,7 +5,13 @@ export const getLocalState = key => {
     if (serializedState === null) {
       return undefined;
     }
-    return JSON.parse(serializedState);
+    let result;
+    try{
+      result = JSON.parse(serializedState)
+    }catch(e){
+      result = serializedState;
+    }
+    return result;
   } catch (err) {
     return undefined;
   }

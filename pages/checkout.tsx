@@ -8,6 +8,8 @@ import Checkout from 'containers/CheckoutWithSidebar/CheckoutWithSidebar';
 import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query';
 
 import { ProfileProvider } from 'contexts/profile/profile.provider';
+import Router from 'next/router';
+import { AuthContext } from 'contexts/auth/auth.context';
 
 type Props = {
   deviceType: {
@@ -17,11 +19,19 @@ type Props = {
   };
 };
 const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
+  const {
+    authState: { isAuthenticated }
+  } = React.useContext<any>(AuthContext);
   const { data, error, loading } = useQuery(GET_LOGGED_IN_CUSTOMER);
   if (loading) {
-    return <div>loading...</div>;
+    return <div style={{margin:"150px 0 0 0"}}>loading...</div>;
   }
-  if (error) return <div>{error.message}</div>;
+  if(error || !isAuthenticated) {
+    Router.push('/login');
+    return null
+  }
+
+  if (error) return <div style={{margin:"150px 0 0 0"}}>{error.message}</div>;
   const token = 'true';
 
   return (

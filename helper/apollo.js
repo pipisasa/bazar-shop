@@ -76,6 +76,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
               />
             );
           } catch (error) {
+            console.log({error})
             // Prevent Apollo Client GraphQL errors from crashing SSR.
             // Handle them in components via the data.error prop:
             // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error
@@ -131,12 +132,12 @@ const httpLink = new HttpLink({
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = getLocalState('access_token') || "";
+  const token = getLocalState('access_token')?.token || "";
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `JWT ${token}` : "",
     }
   }
 });

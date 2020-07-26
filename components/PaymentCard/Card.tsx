@@ -25,9 +25,10 @@ const Card: React.FC<Props> = ({
   lastFourDigit,
   color,
 }) => {
+  cardType = cardType.toLowerCase();
   const logo =
     (cardType === 'paypal' && Paypal) ||
-    (cardType === 'master' && MasterCard) ||
+    (cardType === 'mastercard' && MasterCard) ||
     (cardType === 'visa' && Visa);
 
   return (
