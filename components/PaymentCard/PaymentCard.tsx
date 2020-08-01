@@ -30,7 +30,6 @@ const PaymentCard: React.FunctionComponent<PaymentCardProps & any> = ({
     onDelete();
   }
   const {firstName, lastName} = name;
-  console.log()
   return (
     <Wrapper
       htmlFor={`payment-card-${id}`}

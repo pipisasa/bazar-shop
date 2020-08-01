@@ -57,7 +57,7 @@ const QuickView: React.FunctionComponent<QuickViewProps> = ({
     category,
   } = modalProps;
 
-  const galleryImgs = [...images, {image}]
+  const galleryImgs = images
 
   const { isRtl } = useLocale();
 

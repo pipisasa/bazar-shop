@@ -4,10 +4,13 @@ import { useQuery } from '@apollo/react-hooks';
 import { Modal } from '@redq/reuse-modal';
 import { withApollo } from 'helper/apollo';
 import { SEO } from 'components/seo';
-import Checkout from 'containers/Checkout/Checkout';
+import Checkout from 'containers/CheckoutWithSidebar/CheckoutWithSidebar';
 import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query';
 
 import { ProfileProvider } from 'contexts/profile/profile.provider';
+// import Router from 'next/router';
+// import { AuthContext } from 'contexts/auth/auth.context';
+// import { getLocalState } from 'helper/localStorage';
 
 type Props = {
   deviceType: {
@@ -17,22 +20,21 @@ type Props = {
   };
 };
 const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
-  const { data, error, loading } = useQuery(GET_LOGGED_IN_CUSTOMER);
-  if (loading) {
-    return <div>loading...</div>;
+  const initData={
+    id: 0,
+    email: "",
+    firstName: "",
+    lastName: "",
+    address:[],
+    contacts:[],
+    cards:[],
   }
-  if (error) return <div>{error.message}</div>;
-  const token = 'true';
-
   return (
     <>
-      <SEO
-        title='Checkout Alternative - PickBazar'
-        description='Checkout Details'
-      />
-      <ProfileProvider initData={data.me}>
+      <SEO title='Checkout - PickBazar' description='Checkout Details' />
+      <ProfileProvider initData={initData}>
         <Modal>
-          <Checkout token={token} deviceType={deviceType} />
+          <Checkout isAnonimus deviceType={deviceType} />
         </Modal>
       </ProfileProvider>
     </>

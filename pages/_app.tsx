@@ -28,9 +28,9 @@ import 'components/MultiCarousel/MultiCarousel.style.css';
 import '@redq/reuse-modal/lib/index.css';
 import { GlobalStyle } from 'styled/global.style';
 import { parseCookies } from 'helper/parse-cookies';
-import { getLocalState, setLocalState } from 'helper/localStorage';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+// import { getLocalState, setLocalState } from 'helper/localStorage';
+// import { useMutation } from '@apollo/react-hooks';
+// import gql from 'graphql-tag';
 
 // Language translation Config
 const messages = {

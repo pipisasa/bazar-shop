@@ -76,7 +76,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
               />
             );
           } catch (error) {
-            console.log({error})
+            // console.log({error})
             // Prevent Apollo Client GraphQL errors from crashing SSR.
             // Handle them in components via the data.error prop:
             // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error

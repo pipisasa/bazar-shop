@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Col } from 'react-styled-flexboxgrid';
 import { openModal } from '@redq/reuse-modal';
@@ -39,8 +39,14 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
   const [deleteContactMutation] = useMutation(DELETE_CONTACT);
   const [deleteAddressMutation] = useMutation(DELETE_ADDRESS);
   const [deletePaymentCardMutation] = useMutation(DELETE_CARD);
-
   const { address, contacts, cards } = state;
+  useEffect(() => {  
+    const {firstName, lastName, email} = state
+    localStorage.setItem("profileInfo", JSON.stringify({firstName, lastName, email}))
+    return () => {
+      
+    }
+  }, [])
 
   const handleChange = (value: string, field: string) => {
     dispatch({ type: 'HANDLE_ON_INPUT_CHANGE', payload: { value, field } });
@@ -71,7 +77,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
       const modalComponent = name === 'address' ? UpdateAddress : UpdateContact;
       handleModal(modalComponent, item);
     } else {
-      console.log(name, item, type, 'delete');
+      // console.log(name, item, type, 'delete');
       switch (name) {
         case 'payment':
           dispatch({ type: 'DELETE_CARD', payload: item.id });
@@ -98,10 +104,11 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
   };
 
   const handleSave = async () => {
-    const { firstName,lastName, email } = state;
-    await updateMeMutation({
-      variables: { meInput: JSON.stringify({ firstName, lastName, email }) },
-    });
+    const { firstName, lastName, email } = state;
+    const prevProfile =  JSON.parse(localStorage.getItem("profileInfo"));
+    const variables = Object.fromEntries(Object.entries({firstName, lastName, email}).filter(([key, val])=>val !== prevProfile[key]))
+    console.log(variables)
+    await updateMeMutation({ variables });
   };
 
   return (

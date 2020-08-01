@@ -1,10 +1,10 @@
 export default [
-  {
-    id: '1',
-    type: 'primary',
-    title: 'express-delivery',
-    time_slot: '90 min express delivery',
-  },
+  // {
+  //   id: '1',
+  //   type: 'primary',
+  //   title: 'express-delivery',
+  //   time_slot: '90 min express delivery',
+  // },
   {
     id: '2',
     type: 'secondary',
@@ -29,10 +29,10 @@ export default [
     title: '5pm-8pm',
     time_slot: '5.00 PM - 8.00 PM',
   },
-  {
-    id: '6',
-    type: 'secondary',
-    title: 'nextday',
-    time_slot: 'Next Day',
-  },
+  // {
+  //   id: '6',
+  //   type: 'secondary',
+  //   title: 'nextday',
+  //   time_slot: 'Next Day',
+  // },
 ];

@@ -1,5 +1,25 @@
 import gql from 'graphql-tag';
 
+export const ADD_NEW_ADDRESS = gql`
+  mutation($addressInput: String!){
+    createAddress(input: $addressInput){
+      address{
+        id
+        Type
+        name
+        slug
+        info
+        user{
+          id
+          email
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+`
+
 export const UPDATE_ADDRESS = gql`
   mutation($addressInput: String!) {
     updateAddress(addressInput: $addressInput) {

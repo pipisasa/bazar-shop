@@ -10,6 +10,8 @@ import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query';
 import { ProfileProvider } from 'contexts/profile/profile.provider';
 import Router from 'next/router';
 import { AuthContext } from 'contexts/auth/auth.context';
+import { getLocalState } from 'helper/localStorage';
+import { LoaderWrapper } from 'components/Loader/Loader';
 
 type Props = {
   deviceType: {
@@ -23,23 +25,27 @@ const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
     authState: { isAuthenticated }
   } = React.useContext<any>(AuthContext);
   const { data, error, loading } = useQuery(GET_LOGGED_IN_CUSTOMER);
+  // console.log(data, error, "checkout")
   if (loading) {
-    return <div style={{margin:"150px 0 0 0"}}>loading...</div>;
+    return <LoaderWrapper/>;
   }
-  if(error || !isAuthenticated) {
-    Router.push('/login');
-    return null
+  if(error) {
+    if(!getLocalState("access_token")){
+      Router.push('/checkout-anonimus');
+      return null;
+    }
+    Router.push('/logout');
+    return null;
   }
 
   if (error) return <div style={{margin:"150px 0 0 0"}}>{error.message}</div>;
-  const token = 'true';
 
   return (
     <>
       <SEO title='Checkout - PickBazar' description='Checkout Details' />
       <ProfileProvider initData={data.me}>
         <Modal>
-          <Checkout token={token} deviceType={deviceType} />
+          <Checkout deviceType={deviceType} />
         </Modal>
       </ProfileProvider>
     </>

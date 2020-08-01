@@ -5,7 +5,7 @@ import { closeModal } from '@redq/reuse-modal';
 import TextField from 'components/TextField/TextField';
 import Button from 'components/Button/Button';
 import { useMutation } from '@apollo/react-hooks';
-import { UPDATE_ADDRESS } from 'graphql/mutation/address';
+import { UPDATE_ADDRESS, ADD_NEW_ADDRESS } from 'graphql/mutation/address';
 import { FieldWrapper, Heading } from './Update.style';
 import { ProfileContext } from 'contexts/profile/profile.context';
 
@@ -36,8 +36,8 @@ const FormEnhancer = withFormik<MyFormProps, FormValues>({
     info: Yup.string().required('Address is required'),
   }),
   handleSubmit: values => {
-    console.log(values, 'values');
-    // do submitting things
+    // console.log(values, 'values');
+    // TODO submitting things
   },
 });
 
@@ -48,12 +48,12 @@ const UpdateAddress = (props: FormikProps<FormValues> & MyFormProps) => {
     values,
     touched,
     errors,
-    dirty,
+    // dirty,
     handleChange,
     handleBlur,
 
-    handleReset,
-    isSubmitting,
+    // handleReset,
+    // isSubmitting,
   } = props;
   const addressValue = {
     id: values.id,
@@ -61,18 +61,28 @@ const UpdateAddress = (props: FormikProps<FormValues> & MyFormProps) => {
     name: values.name,
     info: values.info,
   };
-  const { state, dispatch } = useContext(ProfileContext);
+  const { 
+    // state, 
+    dispatch 
+  } = useContext(ProfileContext);
 
-  const [addressMutation, { data }] = useMutation(UPDATE_ADDRESS);
+  const [addressMutation, { 
+    // data 
+  }] = useMutation(item && item.id ? UPDATE_ADDRESS : ADD_NEW_ADDRESS);
 
   const handleSubmit = async () => {
     if (isValid) {
-      const addressData = await addressMutation({
-        variables: { addressInput: JSON.stringify(addressValue) },
-      });
-      console.log(addressData, 'address data');
-      dispatch({ type: 'ADD_OR_UPDATE_ADDRESS', payload: addressValue });
-      closeModal();
+      // console.log(addressValue, 'address value');
+      try {
+        const addressData = await addressMutation({
+          variables: { addressInput: JSON.stringify(addressValue) },
+        });
+        // console.log(addressData, 'address data')
+        dispatch({ type: 'ADD_OR_UPDATE_ADDRESS', payload: addressValue });
+        closeModal();
+      } catch (e) {
+        
+      }
     }
   };
   return (

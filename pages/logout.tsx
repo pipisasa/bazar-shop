@@ -6,7 +6,7 @@ import { AuthContext } from 'contexts/auth/auth.context';
 const Index: React.FC = () => {
   const {authDispatch} = useContext<any>(AuthContext)
   useEffect(()=>{
-    authDispatch({type:'SIGN_OUT'})
+    authDispatch({type:'SIGN_OUT'});
   },[])
   const router = useRouter();
   React.useEffect(() => {

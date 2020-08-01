@@ -61,10 +61,11 @@ import { FormattedMessage } from 'react-intl';
 import { useCart } from 'contexts/cart/use-cart';
 import { APPLY_COUPON } from 'graphql/mutation/coupon';
 import { useLocale } from 'contexts/language/language.provider';
+import { getLocalState } from 'helper/localStorage';
 
 // The type of props Checkout Form receives
 interface MyFormProps {
-  token: string;
+  isAnonimus?: boolean
   deviceType: any;
 }
 
@@ -90,7 +91,7 @@ const OrderItem: React.FC<CartItemProps> = ({ product }) => {
   );
 };
 
-const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
+const CheckoutWithSidebar: React.FC<MyFormProps> = ({ deviceType }) => {
   const [hasCoupon, setHasCoupon] = useState(false);
   const [couponCode, setCouponCode] = useState('');
   const [couponError, setError] = useState('');
@@ -110,7 +111,6 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
   const [loading, setLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const { address, contacts, cards, schedules } = state;
-
   const [deleteContactMutation] = useMutation(DELETE_CONTACT);
   const [deleteAddressMutation] = useMutation(DELETE_ADDRESS);
   const [deletePaymentCardMutation] = useMutation(DELETE_CARD);
@@ -172,19 +172,19 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
       switch (name) {
         case 'payment':
           dispatch({ type: 'DELETE_CARD', payload: item.id });
-
+          if(!getLocalState("access_token")?.token)return false;
           return await deletePaymentCardMutation({
             variables: { cardId: JSON.stringify(item.id) },
           });
         case 'contact':
           dispatch({ type: 'DELETE_CONTACT', payload: item.id });
-
+          if(!getLocalState("access_token")?.token)return false;
           return await deleteContactMutation({
             variables: { contactId: JSON.stringify(item.id) },
           });
         case 'address':
           dispatch({ type: 'DELETE_ADDRESS', payload: item.id });
-
+          if(!getLocalState("access_token")?.token)return false;
           return await deleteAddressMutation({
             variables: { addressId: JSON.stringify(item.id) },
           });

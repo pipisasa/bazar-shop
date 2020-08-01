@@ -1,14 +1,15 @@
 import React, { useReducer } from 'react';
 import { AuthContext } from './auth.context';
+import { setLocalState, getLocalState } from 'helper/localStorage';
 const isBrowser = typeof window !== 'undefined';
 const INITIAL_STATE = {
-  isAuthenticated: isBrowser && !!localStorage.getItem('access_token'),
+  isAuthenticated: isBrowser && !!getLocalState("access_token"),
   currentForm: 'login',
   error: null
 };
 
 function reducer(state: any, action: any) {
-  console.log(state, 'auth');
+  // console.log(state, 'auth');
 
   switch (action.type) {
     case 'SIGNIN':
@@ -25,6 +26,7 @@ function reducer(state: any, action: any) {
         isAuthenticated: true,
       };
     case 'SIGN_OUT':
+      setLocalState("access_token",null);
       return {
         ...state,
         error: null,

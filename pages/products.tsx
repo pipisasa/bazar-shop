@@ -115,9 +115,9 @@ function WomenClothsPage({ deviceType }) {
             </OfferSection> */}
             <ContentSection style={{ width: '100%' }}>
               <Products
-                type={PAGE_TYPE}
+                type=""
                 deviceType={deviceType}
-                fetchLimit={16}
+                fetchLimit={16}    
               />
             </ContentSection>
           </MainContentArea>

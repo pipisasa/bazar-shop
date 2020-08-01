@@ -8,8 +8,14 @@ export const GET_PRODUCT_WITH_RELATED_PRODUCTS = gql`
       weight
       slug
       price
-      type
-      image
+      Type{
+        id
+        title
+        slug
+      }
+      images{
+        image
+      }
       categories {
         id
         slug
@@ -22,8 +28,19 @@ export const GET_PRODUCT_WITH_RELATED_PRODUCTS = gql`
       slug
       weight
       price
-      type
-      image
+      Type{
+        id
+        title
+        slug
+      }
+      categories{
+        id
+        title
+        slug
+      }
+      images{
+        image
+      }
     }
   }
 `;
@@ -36,8 +53,19 @@ export const GET_RELATED_PRODUCTS = gql`
       slug
       weight
       price
-      type
-      image
+      Type{
+        id
+        title
+        slug
+      }
+      categories{
+        id
+        title
+        slug
+      }
+      images{
+        image
+      }
     }
   }
 `;
@@ -51,11 +79,14 @@ export const GET_PRODUCT = gql`
       slug
       price
       discountInPercent
-      type
-      gallery {
-        url
+      Type{
+        id
+        title
+        slug
       }
-      image
+      images{
+        image
+      }
       categories {
         id
         slug
@@ -66,12 +97,16 @@ export const GET_PRODUCT = gql`
 `;
 export const GET_PRODUCT_DETAILS = gql`
   query getProduct($slug: String!){
-    productSolo(slug:$slug){
+    product(slug:$slug){
       id
       title
       slug
       description
-      Type
+      Type{
+        id
+        title
+        slug
+      }
       category{
         id
         title
@@ -83,7 +118,6 @@ export const GET_PRODUCT_DETAILS = gql`
         }
       }
       unit
-      image
       price
       salePrice
       discountPercent
@@ -132,7 +166,6 @@ export const GET_PRODUCTS = gql`
           }
         }
         unit
-        image
         price
         salePrice
         discountPercent

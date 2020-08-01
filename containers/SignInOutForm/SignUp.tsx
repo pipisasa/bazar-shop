@@ -66,7 +66,7 @@ export default function SignOutModal() {
         type:'SIGNUP_SUCCESS',
       })
     }catch(err){
-      console.log({err})
+      // console.log({err})
       authDispatch({
         type:'SIGNUP_ERROR',
         payload: err.message

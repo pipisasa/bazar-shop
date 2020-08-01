@@ -1,11 +1,11 @@
 // localStorage.js
-export const getLocalState = key => {
+export const getLocalState = (key:any) => {
   try {
     const serializedState = localStorage.getItem(key);
-    if (serializedState === null) {
+    if (serializedState === null || serializedState === "null") {
       return undefined;
     }
-    let result;
+    let result:any;
     try{
       result = JSON.parse(serializedState)
     }catch(e){
@@ -17,7 +17,7 @@ export const getLocalState = key => {
   }
 };
 
-export const setLocalState = (key, value) => {
+export const setLocalState = (key:any, value:any) => {
   try {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState);

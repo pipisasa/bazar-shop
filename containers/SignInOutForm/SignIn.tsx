@@ -46,7 +46,7 @@ export default function SignInModal() {
           password
         }
       })
-      console.log(token)
+      // console.log(token)
       if(!token){
         closeModal();
         return;

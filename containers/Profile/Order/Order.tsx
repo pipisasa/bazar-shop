@@ -22,6 +22,7 @@ import OrderCard from './OrderCard/OrderCard';
 import OrderCardMobile from './OrderCard/orderCardMobile';
 import useComponentSize from 'helper/useComponentSize';
 import { FormattedMessage } from 'react-intl';
+import { LoaderWrapper } from 'components/Loader/Loader';
 
 const progressData = ['Order Received', 'Order On The Way', 'Order Delivered'];
 
@@ -125,7 +126,7 @@ const OrdersContent: React.FC<OrderTableProps> = ({
   }, [data && data.orders]);
 
   if (loading) {
-    return <div>loading...</div>;
+    return <LoaderWrapper/>;
   }
 
   if (error) return <div>{error.message}</div>;
@@ -135,7 +136,7 @@ const OrdersContent: React.FC<OrderTableProps> = ({
     setActive(order.id);
   };
 
-  console.log(data.orders, 'data.orders', order, 'order');
+  // console.log(data.orders, 'data.orders', order, 'order');
 
   return (
     <OrderBox>

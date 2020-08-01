@@ -50,12 +50,12 @@ const DrawerMenuItems = [
     label: 'Checkout',
     href: PROCEED_TO_CHECKOUT_PAGE,
   },
-  {
-    id: 3,
-    label: 'Checkout Second',
-    intlLabelId: 'alternativeCheckout',
-    href: ALTERNATIVE_CHECKOUT_PAGE,
-  },
+  // {
+  //   id: 3,
+  //   label: 'Checkout Second',
+  //   intlLabelId: 'alternativeCheckout',
+  //   href: ALTERNATIVE_CHECKOUT_PAGE,
+  // },
   {
     id: 4,
     intlLabelId: 'navlinkProfile',
