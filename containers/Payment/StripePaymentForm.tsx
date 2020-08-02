@@ -20,7 +20,10 @@ type StripeFormProps = ReactStripeElements.InjectedStripeProps & {
 };
 const StripeForm = injectStripe(
   ({ getToken, buttonText, stripe }: StripeFormProps) => {
-    const { state, dispatch } = useContext(ProfileContext);
+    const { 
+      // state, 
+      dispatch 
+    } = useContext(ProfileContext);
     const handleSubmit = async () => {
       let { token } = await stripe.createToken({ name: 'Name' });
       getToken(token);
@@ -52,10 +55,11 @@ type Item = {
 const StripePaymentForm = ({ item: { price, buttonText } }: Item) => {
   const [getPayment] = useMutation(GET_PAYMENT);
   const sendTokenToServer = async (token: any) => {
+    console.log(JSON.stringify(token) , "stripe JSON.stringify(token)")
     const payment_info = await getPayment({
-      variables: { paymentInput: JSON.stringify({ token, amount: price }) },
+      variables: { token, amount: price },
     });
-    // console.log(payment_info, 'payment_info');
+    console.log(payment_info, 'payment_info');
   };
 
   return (

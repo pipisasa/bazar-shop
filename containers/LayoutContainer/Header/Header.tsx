@@ -9,7 +9,7 @@ import { RightMenu } from './Menu/RightMenu/RightMenu';
 import { LeftMenu } from './Menu/LeftMenu/LeftMenu';
 import HeaderWrapper, { DrawerWrapper } from './Header.style';
 import LogoImage from 'image/logo.svg';
-import UserImage from 'image/user.jpg';
+import UserImage from 'image/user.png';
 // import { isCategoryPage } from '../is-home-page';
 import MobileDrawer from './MobileDrawer';
 import { DrawerProvider } from 'contexts/drawer/drawer.provider';

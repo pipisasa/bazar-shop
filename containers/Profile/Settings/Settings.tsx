@@ -83,19 +83,19 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
           dispatch({ type: 'DELETE_CARD', payload: item.id });
 
           return await deletePaymentCardMutation({
-            variables: { cardId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
-        case 'contacts':
+        case 'contact':
           dispatch({ type: 'DELETE_CONTACT', payload: item.id });
 
           return await deleteContactMutation({
-            variables: { contactId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
         case 'address':
           dispatch({ type: 'DELETE_ADDRESS', payload: item.id });
 
           return await deleteAddressMutation({
-            variables: { addressId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
         default:
           return false;

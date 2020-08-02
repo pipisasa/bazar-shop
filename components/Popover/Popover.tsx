@@ -36,13 +36,13 @@ const Popover: React.FC<PopoverProps> = ({
   }
 
   // Toggle Popover content
-  const handleToggle = e => {
+  const handleToggle = (e:any) => {
     e.stopPropagation();
     setState(state => !state);
   };
 
   // Handle document click
-  const handleDocumentClick = e => {
+  const handleDocumentClick = (e:any) => {
     e.stopPropagation();
     if (state) {
       handleToggle(e);
@@ -58,7 +58,7 @@ const Popover: React.FC<PopoverProps> = ({
   });
 
   // Close popover on click outside
-  useOnClickOutside(ref, () => setState(state => false));
+  useOnClickOutside(ref, () => setState(() => false));
 
   return (
     <PopoverWrapper className={addAllClasses.join(' ')} ref={ref}>

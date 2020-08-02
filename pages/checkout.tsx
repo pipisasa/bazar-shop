@@ -9,7 +9,7 @@ import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query';
 
 import { ProfileProvider } from 'contexts/profile/profile.provider';
 import Router from 'next/router';
-import { AuthContext } from 'contexts/auth/auth.context';
+// import { AuthContext } from 'contexts/auth/auth.context';
 import { getLocalState } from 'helper/localStorage';
 import { LoaderWrapper } from 'components/Loader/Loader';
 
@@ -21,10 +21,10 @@ type Props = {
   };
 };
 const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
-  const {
-    authState: { isAuthenticated }
-  } = React.useContext<any>(AuthContext);
-  const { data, error, loading } = useQuery(GET_LOGGED_IN_CUSTOMER);
+  // const {
+  //   authState: { isAuthenticated }
+  // } = React.useContext<any>(AuthContext);
+  const { data, error, loading, fetchMore } = useQuery(GET_LOGGED_IN_CUSTOMER);
   // console.log(data, error, "checkout")
   if (loading) {
     return <LoaderWrapper/>;
@@ -45,7 +45,7 @@ const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
       <SEO title='Checkout - PickBazar' description='Checkout Details' />
       <ProfileProvider initData={data.me}>
         <Modal>
-          <Checkout deviceType={deviceType} />
+          <Checkout fetchMore={fetchMore} deviceType={deviceType} />
         </Modal>
       </ProfileProvider>
     </>

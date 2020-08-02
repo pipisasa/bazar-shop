@@ -372,7 +372,8 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                 handleAddNewCard={() => {
                   handleModal(
                     StripePaymentForm,
-                    { totalPrice: calculatePrice() },
+                    { price: calculatePrice() },
+                    // { totalPrice: calculatePrice() },
                     'add-address-modal stripe-modal'
                   );
                 }}

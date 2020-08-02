@@ -6,8 +6,8 @@ import RadioCard from 'components/RadioCard/RadioCard';
 import RadioGroup from 'components/RadioGroup/RadioGroup';
 import PaymentGroup from 'components/PaymentGroup/PaymentGroup';
 import Loader from 'components/Loader/Loader';
-import UpdateAddress from './Update/UpdateAddress';
-import UpdateContact from './Update/UpdateContact';
+import UpdateContact from '../Checkout/Update/UpdateContact';
+import UpdateAddress from '../Checkout/Update/UpdateAddress';
 import StripePaymentForm from '../Payment/StripePaymentForm';
 import { DELETE_ADDRESS } from 'graphql/mutation/address';
 import { DELETE_CARD } from 'graphql/mutation/card';
@@ -61,11 +61,12 @@ import { FormattedMessage } from 'react-intl';
 import { useCart } from 'contexts/cart/use-cart';
 import { APPLY_COUPON } from 'graphql/mutation/coupon';
 import { useLocale } from 'contexts/language/language.provider';
-import { getLocalState } from 'helper/localStorage';
+// import { getLocalState } from 'helper/localStorage';
 
 // The type of props Checkout Form receives
 interface MyFormProps {
-  isAnonimus?: boolean
+  isAnonimus?: boolean;
+  fetchMore: any;
   deviceType: any;
 }
 
@@ -169,24 +170,25 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ deviceType }) => {
       const modalComponent = name === 'address' ? UpdateAddress : UpdateContact;
       handleModal(modalComponent, item);
     } else {
+      console.log(name, item, type, 'delete');
       switch (name) {
         case 'payment':
           dispatch({ type: 'DELETE_CARD', payload: item.id });
-          if(!getLocalState("access_token")?.token)return false;
+
           return await deletePaymentCardMutation({
-            variables: { cardId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
         case 'contact':
           dispatch({ type: 'DELETE_CONTACT', payload: item.id });
-          if(!getLocalState("access_token")?.token)return false;
+
           return await deleteContactMutation({
-            variables: { contactId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
         case 'address':
           dispatch({ type: 'DELETE_ADDRESS', payload: item.id });
-          if(!getLocalState("access_token")?.token)return false;
+
           return await deleteAddressMutation({
-            variables: { addressId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
         default:
           return false;
@@ -388,7 +390,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ deviceType }) => {
                     <span>{coupon.code}</span>
 
                     <RemoveCoupon
-                      onClick={(e) => {
+                      onClick={(e:any) => {
                         e.preventDefault();
                         removeCoupon();
                         setHasCoupon(false);
@@ -480,7 +482,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ deviceType }) => {
                   autoHide
                   autoHeight
                   autoHeightMax='390px'
-                  renderView={(props) => (
+                  renderView={(props:any) => (
                     <div
                       {...props}
                       style={{
@@ -495,7 +497,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ deviceType }) => {
                 >
                   <ItemsWrapper>
                     {cartItemsCount > 0 ? (
-                      items.map((item) => (
+                      items.map((item:any) => (
                         <OrderItem key={`cartItem-${item.id}`} product={item} />
                       ))
                     ) : (

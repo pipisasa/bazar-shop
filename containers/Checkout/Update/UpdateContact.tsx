@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 import MaskedInput from 'react-text-mask';
 import { ProfileContext } from 'contexts/profile/profile.context';
 import Button from 'components/Button/Button';
-import { UPDATE_CONTACT } from 'graphql/mutation/contact';
+import { UPDATE_CONTACT, CREATE_CONTACT } from 'graphql/mutation/contact';
 import { FieldWrapper, Heading } from './Update.style';
 
 type Props = {
@@ -17,6 +17,7 @@ type Props = {
 // Shape of form values
 type FormValues = {
   id?: number | null;
+  slug: string;
   type?: string;
   number?: string;
 };
@@ -28,17 +29,25 @@ const ContactValidationSchema = Yup.object().shape({
 const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
   const initialValues = {
     id: item.id || null,
+    slug: item.slug || null,
     type: item.type || 'secondary',
     number: item.number || '',
   };
-  const [addContactMutation] = useMutation(UPDATE_CONTACT);
-  const { state, dispatch } = useContext(ProfileContext);
+  const [addContactMutation] = useMutation((item && item.slug) ?  UPDATE_CONTACT : CREATE_CONTACT);
+  const { 
+    // state, 
+  dispatch } = useContext(ProfileContext);
   const handleSubmit = async (values: FormValues, { setSubmitting }: any) => {
-    await addContactMutation({
-      variables: { contactInput: JSON.stringify(values) },
+    console.log(values)
+    const {data} = await addContactMutation({
+      variables: {
+        slug: values.slug,
+        number: values.number,
+        type: values.type
+      },
     });
     // console.log(values, 'formik values');
-    dispatch({ type: 'ADD_OR_UPDATE_CONTACT', payload: values });
+    dispatch({ type: 'ADD_OR_UPDATE_CONTACT', payload: data });
     closeModal();
     setSubmitting(false);
   };
@@ -61,16 +70,15 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
           <FieldWrapper>
             <MaskedInput
               mask={[
-                '(',
+                // '(',
                 /[1-9]/,
                 /\d/,
                 /\d/,
-                ')',
-                ' ',
+                // ')',
+                // ' ',
                 /\d/,
                 /\d/,
                 /\d/,
-                '-',
                 /\d/,
                 /\d/,
                 /\d/,

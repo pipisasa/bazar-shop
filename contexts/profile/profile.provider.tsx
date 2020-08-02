@@ -1,9 +1,10 @@
 import React, { useReducer } from 'react';
-import uuidV4 from 'uuid/v4';
+// import uuidV4 from 'uuid/v4';
 import schedules from 'containers/Checkout/data';
 import { ProfileContext } from './profile.context';
 
 type Action =
+  | { type: 'UPDATE_ME_INFO', payload: any}
   | { type: 'HANDLE_ON_INPUT_CHANGE'; payload: any }
   | { type: 'ADD_OR_UPDATE_CONTACT'; payload: any }
   | { type: 'DELETE_CONTACT'; payload: any }
@@ -16,29 +17,28 @@ type Action =
   | { type: 'SET_PRIMARY_SCHEDULE'; payload: any }
   | { type: 'SET_PRIMARY_CARD'; payload: any };
 function reducer(state: any, action: Action): any {
+  console.log(action)
   switch (action.type) {
+    case 'UPDATE_ME_INFO': 
+    return {...action.payload, schedules};
     case 'HANDLE_ON_INPUT_CHANGE':
       return { ...state, [action.payload.field]: action.payload.value };
     case 'ADD_OR_UPDATE_CONTACT':
-      if (action.payload.id) {
+      if (action.payload.updateContact) {
+        const {payload:{updateContact:{contact}}} = action;
         return {
           ...state,
           contacts: state.contacts.map((item: any) =>
-            item.id === action.payload.id
-              ? { ...item, ...action.payload }
+            item.id === contact.id
+              ? { ...item, ...contact }
               : item
           ),
         };
       }
-      const newContact = {
-        ...action.payload,
-        id: uuidV4(),
-        Type: state.contacts.length === '0' ? 'primary' : 'secondary',
-      };
-      return {
-        ...state,
-        contacts: [...state.contacts, newContact],
-      };
+    return {
+      ...state,
+      contacts: [...state.contacts, action.payload.createContact.contact],
+    };
 
     case 'DELETE_CONTACT':
       return {
@@ -48,24 +48,20 @@ function reducer(state: any, action: Action): any {
         ),
       };
     case 'ADD_OR_UPDATE_ADDRESS':
-      if (action.payload.id) {
+      if (action.payload.updateAddress) {
+        const {payload:{updateAddress:{address}}} = action;
         return {
           ...state,
           address: state.address.map((item: any) =>
-            item.id === action.payload.id
-              ? { ...item, ...action.payload }
+            item.id === address.id
+              ? { ...item, ...address }
               : item
           ),
         };
       }
-      const newAdress = {
-        ...action.payload,
-        id: uuidV4(),
-        Type: state.address.length === '0' ? 'primary' : 'secondary',
-      };
       return {
         ...state,
-        address: [...state.address, newAdress],
+        address: [...state.address, action.payload.createAddress.address],
       };
     case 'DELETE_ADDRESS':
       return {

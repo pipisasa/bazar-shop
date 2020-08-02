@@ -1,32 +1,39 @@
 import gql from 'graphql-tag';
 
 export const ADD_NEW_ADDRESS = gql`
-  mutation($addressInput: String!){
-    createAddress(input: $addressInput){
+  mutation(
+    $name: String!
+    $info: String!
+  ){
+    createAddress(
+      name:$name
+      information:$info
+    ){
       address{
         id
-        Type
-        name
         slug
+        name
         info
-        user{
-          id
-          email
-          firstName
-          lastName
-        }
       }
     }
   }
 `
 
 export const UPDATE_ADDRESS = gql`
-  mutation($addressInput: String!) {
-    updateAddress(addressInput: $addressInput) {
-      id
-      name
-      address {
+  mutation(
+    $info: String!
+    $name: String!
+    $slug: String!
+  ) {
+    updateAddress(
+      slug:$slug
+      name:$name
+      information:$info
+      type:"secondary"
+    ){
+      address{
         id
+        slug
         name
         info
       }
@@ -34,15 +41,9 @@ export const UPDATE_ADDRESS = gql`
   }
 `;
 export const DELETE_ADDRESS = gql`
-  mutation($addressId: String!) {
-    deleteAddress(addressId: $addressId) {
-      id
-      name
-      address {
-        id
-        name
-        info
-      }
+  mutation($slug: String!) {
+    deleteAddress(slug: $slug) {
+      ok
     }
   }
 `;
