@@ -45,7 +45,7 @@ const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
       <SEO title='Checkout - PickBazar' description='Checkout Details' />
       <ProfileProvider initData={data.me}>
         <Modal>
-          <Checkout fetchMore={fetchMore} deviceType={deviceType} />
+          <Checkout deviceType={deviceType} />
         </Modal>
       </ProfileProvider>
     </>

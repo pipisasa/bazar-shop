@@ -66,7 +66,6 @@ import { useLocale } from 'contexts/language/language.provider';
 // The type of props Checkout Form receives
 interface MyFormProps {
   isAnonimus?: boolean;
-  fetchMore: any;
   deviceType: any;
 }
 
