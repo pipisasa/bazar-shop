@@ -9,17 +9,20 @@ export const GET_LOGGED_IN_CUSTOMER = gql`
       lastName
       address {
         id
+        slug
         Type
         name
         info
       }
       contacts{
         id
+        slug
         Type
         number
       }
       cards{
         id
+        slug
         Type
         cardType
         name{

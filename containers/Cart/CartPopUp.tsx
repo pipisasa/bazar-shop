@@ -6,7 +6,7 @@ import CartPopupButton, {
   BoxedCartButton,
 } from 'components/CartPopup/CartPopupButton';
 import { CURRENCY } from 'helper/constant';
-import { CartSlidePopup } from './CartItemCard.style';
+import { CartSlidePopup, CartPopupBack } from './CartItemCard.style';
 import { FormattedMessage } from 'react-intl';
 import { useCart } from 'contexts/cart/use-cart';
 
@@ -72,7 +72,7 @@ const CartPopUp: React.FC<CartProps> = ({
       {mobile || tablet ? (
         <>
           <CartPopupStyle />
-          <CartPopupButton
+          {/* <CartPopupButton
             className='product-cart'
             itemCount={cartItemsCount}
             itemPostfix={
@@ -85,17 +85,19 @@ const CartPopUp: React.FC<CartProps> = ({
             price={calculatePrice()}
             pricePrefix='$'
             onClick={handleModal}
-          />
+          /> */}
         </>
       ) : (
         <>
-          <CartSlidePopup className={cartSliderClass}>
-            {isOpen && (
-              <CartItem onCloseBtnClick={toggleCart} scrollbarHeight='100vh' />
-            )}
-          </CartSlidePopup>
+          <CartPopupBack onClick={(e)=>{if(e.target === e.currentTarget){toggleCart()}}} isOpen={isOpen}>
+            <CartSlidePopup className={cartSliderClass}>
+              {isOpen && (
+                <CartItem onCloseBtnClick={toggleCart} scrollbarHeight='100vh' />
+              )}
+            </CartSlidePopup>
+          </CartPopupBack>
 
-          <BoxedCartButton
+          {/* <BoxedCartButton
             className='product-cart'
             itemCount={cartItemsCount}
             itemPostfix={
@@ -108,7 +110,7 @@ const CartPopUp: React.FC<CartProps> = ({
             price={calculatePrice()}
             pricePrefix={CURRENCY}
             onClick={toggleCart}
-          />
+          /> */}
         </>
       )}
     </>

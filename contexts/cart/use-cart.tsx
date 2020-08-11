@@ -1,6 +1,6 @@
 import React, { useReducer, useContext, createContext } from 'react';
 import { reducer, cartItemsTotalPrice } from './cart.reducer';
-import { useStorage } from 'helper/use-storage';
+// import { useStorage } from 'helper/use-storage';
 const CartContext = createContext({} as any);
 const INITIAL_STATE = {
   isOpen: false,
@@ -11,15 +11,15 @@ const INITIAL_STATE = {
 const useCartActions = (initialCart = INITIAL_STATE) => {
   const [state, dispatch] = useReducer(reducer, initialCart);
 
-  const addItemHandler = (item, quantity = 1) => {
+  const addItemHandler = (item:any, quantity = 1) => {
     dispatch({ type: 'ADD_ITEM', payload: { ...item, quantity } });
   };
 
-  const removeItemHandler = (item, quantity = 1) => {
+  const removeItemHandler = (item:any, quantity = 1) => {
     dispatch({ type: 'REMOVE_ITEM', payload: { ...item, quantity } });
   };
 
-  const clearItemFromCartHandler = (item) => {
+  const clearItemFromCartHandler = (item:any) => {
     dispatch({ type: 'CLEAR_ITEM_FROM_CART', payload: item });
   };
 
@@ -29,20 +29,20 @@ const useCartActions = (initialCart = INITIAL_STATE) => {
   const toggleCartHandler = () => {
     dispatch({ type: 'TOGGLE_CART' });
   };
-  const couponHandler = (coupon) => {
+  const couponHandler = (coupon:any) => {
     dispatch({ type: 'APPLY_COUPON', payload: coupon });
   };
   const removeCouponHandler = () => {
     dispatch({ type: 'REMOVE_COUPON' });
   };
-  const rehydrateLocalState = (payload) => {
+  const rehydrateLocalState = (payload:any) => {
     dispatch({ type: 'REHYDRATE', payload });
   };
-  const isInCartHandler = (id) => {
-    return state.items?.some((item) => item.id === id);
+  const isInCartHandler = (id:any) => {
+    return state.items?.some((item:any) => item.id === id);
   };
-  const getItemHandler = (id) => {
-    return state.items?.find((item) => item.id === id);
+  const getItemHandler = (id:any) => {
+    return state.items?.find((item:any) => item.id === id);
   };
   const getCartItemsPrice = () => cartItemsTotalPrice(state.items).toFixed(2);
   const getCartItemsTotalPrice = () =>
@@ -56,7 +56,7 @@ const useCartActions = (initialCart = INITIAL_STATE) => {
     return discount.toFixed(2);
   };
   const getItemsCount = state.items?.reduce(
-    (acc, item) => acc + item.quantity,
+    (acc:any, item:any) => acc + item.quantity,
     0
   );
   return {
@@ -81,7 +81,7 @@ const useCartActions = (initialCart = INITIAL_STATE) => {
 export const CartProvider = ({ children }) => {
   const {
     state,
-    rehydrateLocalState,
+    // rehydrateLocalState,
     getItemsCount,
     addItemHandler,
     removeItemHandler,
@@ -96,7 +96,7 @@ export const CartProvider = ({ children }) => {
     getCartItemsPrice,
     getDiscount,
   } = useCartActions();
-  const { rehydrated, error } = useStorage(state, rehydrateLocalState);
+  // const { rehydrated, error } = useStorage(state, rehydrateLocalState);
 
   return (
     <CartContext.Provider
@@ -106,6 +106,7 @@ export const CartProvider = ({ children }) => {
         coupon: state.coupon,
         cartItemsCount: state.items?.length,
         itemsCount: getItemsCount,
+        getCartItemsCount: state.items?.length ? state.items.reduce((a:Number,b:any)=>a+b.quantity,0): null,
         addItem: addItemHandler,
         removeItem: removeItemHandler,
         removeItemFromCart: clearItemFromCartHandler,

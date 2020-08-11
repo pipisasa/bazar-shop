@@ -14,15 +14,9 @@ export const ADD_CARD = gql`
   }
 `;
 export const DELETE_CARD = gql`
-  mutation($cardId: String!) {
-    deletePaymentCard(cardId: $cardId) {
-      id
-      name
-      address {
-        id
-        name
-        info
-      }
+  mutation($slug: String!) {
+    deleteCard(slug: $slug) {
+      ok
     }
   }
 `;

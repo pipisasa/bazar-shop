@@ -18,7 +18,7 @@ import { closeModal } from '@redq/reuse-modal';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { LOGIN_USER } from '../../graphql/mutation/user';
 
-export default function SignInModal({isNotModal}) {
+export default function SignInModal() {
   const { authDispatch } = useContext<any>(AuthContext);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -46,7 +46,7 @@ export default function SignInModal({isNotModal}) {
           password
         }
       })
-      console.log(token)
+      // console.log(token)
       if(!token){
         closeModal();
         return;

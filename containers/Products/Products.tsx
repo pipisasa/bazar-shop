@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { openModal, closeModal } from '@redq/reuse-modal';
@@ -18,7 +18,10 @@ import Loader from 'components/Loader/Loader';
 import Placeholder from 'components/Placeholder/Placeholder';
 import Fade from 'react-reveal/Fade';
 import NoResultFound from 'components/NoResult/NoResult';
+import Router from 'next/router';
 import { GET_PRODUCTS } from 'graphql/query/product.query';
+import { AuthContext } from 'contexts/auth/auth.context';
+// import { getLocalState } from 'helper/localStorage';
 // import fakeDB from '../../helper/fakeDB';
 
 const QuickView = dynamic(() => import('../QuickView/QuickView'));
@@ -29,28 +32,30 @@ type ProductsProps = {
     tablet: boolean;
     desktop: boolean;
   };
-  type: string;
+  type?: string;
   fetchLimit?: number;
   loadMore?: boolean;
 };
-export const Products: React.FC<ProductsProps> = ({
-  deviceType,
-  type,
-  fetchLimit = 8,
-  loadMore = true,
-}) => {
-  const router = useRouter();
+export const Products: React.FC<ProductsProps> = (props) => {
+  const {
+    deviceType,
+    type,
+    fetchLimit = 8,
+    loadMore = true,
+  } = props;
+  // console.log(type, "Hello")
+  const router = useRouter(); 
   const [loadingMore, toggleLoading] = useState(false);
   let { data, error, loading, fetchMore } = useQuery(GET_PRODUCTS, {
     variables:{
-      type: router.query.type,
+      type: router.query.type || type,
       offset: 0,
       limit: fetchLimit,
       text:router.query.text,
       category:router.query.category
     },
   });
-  console.log(data)
+  // console.log(data)
   // Quick View Modal
   const handleModalClose = () => {
     const as = router.asPath;
@@ -110,7 +115,21 @@ export const Products: React.FC<ProductsProps> = ({
     );
   }
 
-  if (error){return <div>{error.message}</div>};
+  
+  const {authDispatch} = useContext<any>(AuthContext)
+  if(error) {
+    if(error.message === "Network error: Failed to fetch"){
+      return <div>"Network error!!!"</div>
+    }
+    if(error.message === "GraphQL error: Error decoding signature"){
+      Router.push('/logout');
+    }
+    // console.log(error.message)
+    return null;
+    // authDispatch({type:'SIGN_OUT'});
+    // return "Error"
+    // alert('Error' + error)
+  }
   if (!data || !data.products || data.products.items.length === 0) {
     return <NoResultFound />;
   }
@@ -142,6 +161,7 @@ export const Products: React.FC<ProductsProps> = ({
       <ProductsRow>
         {data.products.items.map((item: any, index: number) => (
           <ProductsCol key={index}>
+            {/* {console.log(item.images)} */}
             {(()=>{item.discountInPercent = item.discountPercent})()}
             <ProductCardWrapper>
               <Fade
@@ -152,7 +172,7 @@ export const Products: React.FC<ProductsProps> = ({
                 <ProductCard
                   title={item.title}
                   description={item.description}
-                  image={item.image}
+                  image={item.images[0]?.image}
                   weight={item.unit}
                   currency={CURRENCY}
                   price={item.price}
@@ -160,6 +180,7 @@ export const Products: React.FC<ProductsProps> = ({
                   discountInPercent={item.discountPercent}
                   data={item}
                   deviceType={deviceType}
+                  link={'/product/'+ item.slug}
                   onClick={() =>
                     handleQuickViewModal(item, deviceType, handleModalClose)
                   }
@@ -190,4 +211,4 @@ export const Products: React.FC<ProductsProps> = ({
     </>
   );
 };
-export default Products;
+export default (Products);

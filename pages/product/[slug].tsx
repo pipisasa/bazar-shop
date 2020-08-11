@@ -12,6 +12,7 @@ import ProductSingleWrapper, {
 import CartPopUp from 'containers/Cart/CartPopUp';
 import { withApollo } from 'helper/apollo';
 import { GET_PRODUCT_DETAILS } from 'graphql/query/product.query';
+import { LoaderWrapper } from 'components/Loader/Loader';
 
 type Props = {
   deviceType?: {
@@ -29,25 +30,25 @@ const ProductPage: NextPage<Props> = ({ deviceType }) => {
   const { data, error, loading } = useQuery(GET_PRODUCT_DETAILS, {
     variables: { slug },
   });
-  console.log(data)
+  // console.log(data)
 
   if (loading) {
-    return <div>loading...</div>;
+    return <LoaderWrapper/>;
   }
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div style={{padding:"150px 0 0 0"}}>Error: {error.message}</div>;
 
-  let content;
-  switch (data.productSolo.Type) {
+  let content:any;
+  switch (data.product.Type) {
     case 'BOOK': {
       content = (
-        <ProductDetailsBook product={data.productSolo} deviceType={deviceType} />
+        <ProductDetailsBook product={data.product} deviceType={deviceType} />
       );
       break;
     }
     default: {
       content = (
-        <ProductDetails product={data.productSolo} deviceType={deviceType} />
+        <ProductDetails product={data.product} deviceType={deviceType} />
       );
     }
   }
@@ -55,8 +56,8 @@ const ProductPage: NextPage<Props> = ({ deviceType }) => {
   return (
     <>
       <SEO
-        title={`${data.productSolo.title} - PickBazar`}
-        description={`${data.productSolo.title} Details`}
+        title={`${data.product.title} - PickBazar`}
+        description={`${data.product.title} Details`}
       />
 
       <Modal>

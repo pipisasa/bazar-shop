@@ -64,8 +64,8 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
       window.scrollTo(0, 0);
     }, 500);
   }, []);
-  const galleryImgs = [...product.images, {image: product.image}]
-  console.log(product.category)
+  const galleryImgs = product.images
+  // console.log(product.category)
   return (
     <>
       <ProductDetailsWrapper className='product-card' dir='ltr'>
@@ -143,11 +143,10 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
 
           <ProductMeta>
             <MetaSingle>
-              {product.category && (<>
+            {/* //TODO Complete to category tags */}
+              {product.category && (
                 <Link
-                  href={`/${product.Type.toLowerCase()}?category=${
-                    product.category.slug
-                  }`}
+                  href={`/$?category=${product.category.slug}`}
                   key={`link-${product.category.id}`}
                 >
                   {
@@ -156,25 +155,23 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
                     </a>
                   }
                 </Link>
-                {product.category.parent && (
-                  <Link
-                    href={`/${product.Type.toLowerCase()}?category=${
-                      product.category.parent.slug
-                    }`}
-                    key={`link-${product.category.parent.id}`}
-                  >
-                    {
-                      <a>
-                        <MetaItem>{product.category.parent.title}</MetaItem>
-                      </a>
-                    }
-                  </Link>
-                )}
-              </>)}
+              )}
+              {product.Type?.slug && (
+                <Link
+                  href={`/?type=${product.Type.slug}`}
+                  key={`link-${product.Type.id}`}
+                >
+                  {
+                    <a>
+                      <MetaItem>{product.Type.title}</MetaItem>
+                    </a>
+                  }
+                </Link>
+              )}
               {/* {product.category
                 ? product.categories.map((item: any) => (
                     <Link
-                      href={`/${product.type.toLowerCase()}?category=${
+                      href={`/${}?category=${
                         item.slug
                       }`}
                       key={`link-${item.id}`}
@@ -225,7 +222,7 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
           />
         </h2>
         <Products
-          type={product.Type.toLowerCase()}
+          type={product.Type.slug}
           deviceType={deviceType}
           loadMore={false}
           fetchLimit={10}

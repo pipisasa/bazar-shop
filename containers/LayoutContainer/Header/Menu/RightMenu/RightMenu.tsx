@@ -7,6 +7,8 @@ import { AuthorizedMenu } from '../AuthorizedMenu';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 // import { HelpIcon } from 'components/AllSvgIcon';
 import { RightMenuBox } from './RightMenu.style';
+import CartButton from './CartButton';
+// import { ShoppingBag } from '../../../../../components/AllSvgIcon'
 
 type Props = {
   onLogout: () => void;
@@ -38,6 +40,8 @@ export const RightMenu: React.FC<Props> = ({
         icon={<HelpIcon />}
       /> */}
       <LanguageSwitcher />
+
+      <CartButton/>
 
       {!isAuthenticated ? (
         <Button

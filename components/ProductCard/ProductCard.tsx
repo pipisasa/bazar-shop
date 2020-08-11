@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'components/Image/Image';
 import Button from '../Button/Button';
 import { CartIcon } from '../AllSvgIcon';
@@ -8,10 +8,12 @@ import {
   ProductInfo,
   SaleTag,
   DiscountPercent,
+  ProductPreviewWrapper,
 } from './ProductCard.style';
 import { useCart } from 'contexts/cart/use-cart';
 import { Counter } from 'components/Counter/Counter';
 import { cartAnimation } from 'helper/cart-animation';
+import Router, { useRouter } from 'next/router';
 
 type ProductCardProps = {
   title: string;
@@ -32,6 +34,7 @@ type ProductCardProps = {
   updateCart?: any;
   value?: any;
   deviceType?: any;
+  link: string;
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -52,6 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   data,
   deviceType,
   onClick,
+  link,
   ...props
 }) => {
   const { addItem, removeItem, getItem, isInCart, items } = useCart();
@@ -66,10 +70,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
     e.stopPropagation();
     removeItem(data);
   };
-
+  const [isOpen, setIsOpen] = useState(false);
+  const handleCLickPreview = (e)=>{
+    e.stopPropagation()
+    onClick(e);
+  }
+  const route = useRouter();
   return (
-    <ProductCardWrapper onClick={onClick} className="product-card">
-      <ProductImageWrapper>
+    <ProductCardWrapper onClick={()=>{route.replace(link)}} className="product-card">
+      <ProductImageWrapper onMouseOver={()=>setIsOpen(true)} onMouseOut={()=>setIsOpen(false)}>
+        <ProductPreviewWrapper isOpen={isOpen}>
+          <Button onClick={handleCLickPreview} size="small" title="preview"/>
+        </ProductPreviewWrapper>
         <Image
           url={image}
           media

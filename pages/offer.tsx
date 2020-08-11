@@ -37,7 +37,7 @@ type GiftCardProps = {
 
 const GiftCardPage: NextPage<GiftCardProps> = ({ deviceType }) => {
   const { data, error } = useQuery(GET_COUPON);
-  console.log({error})
+  // console.log({error})
   if (error) return <div style={{display:"flex", justifyContent:"center", alignItems:"center", height:"100vh"}}>{error.message}</div>;
 
   return (

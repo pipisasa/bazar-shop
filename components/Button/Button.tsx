@@ -3,7 +3,8 @@ import ButtonStyle from './Button.style';
 import { FormattedMessage } from 'react-intl';
 
 type ButtonProps = {
-  title: any;
+  pointer?:any;
+  title?: any;
   intlButtonId?: any;
   icon?: React.ReactNode;
   disabled?: boolean;
@@ -47,9 +48,11 @@ const Button: React.FC<ButtonProps> = ({
   className,
   fullwidth,
   style,
+  pointer,
   ...props
 }) => {
   // Checking button loading state
+  // console.log(pointer, "Button.tsx")
   const buttonIcon =
     isLoading !== false ? (
       <>{loader ? loader : 'loading....'}</>
@@ -79,6 +82,7 @@ const Button: React.FC<ButtonProps> = ({
       fullwidth={fullwidth}
       style={style}
       size={size}
+      pointer={pointer}
       {...props}
     >
       {position === 'left' && buttonIcon}

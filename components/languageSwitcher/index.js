@@ -23,7 +23,7 @@ export default function LanguageSwitcher({ languageConfig }) {
     setShowSwitcher(showSwitcher => !showSwitcher)
   );
 
-  console.log(lang);
+  // console.log(lang);
 
   return (
     <Wrapper ref={container}>
@@ -69,7 +69,7 @@ export default function LanguageSwitcher({ languageConfig }) {
 function SelectLanguage({ toggleLanguage, lang, config = [] }) {
   const handleToggleLanguage = e => {
     toggleLanguage(e.target.value);
-    console.log(e.target.value, 'switcher');
+    // console.log(e.target.value, 'switcher');
   };
   return config.map(item => {
     const isSelected = item.id === lang;

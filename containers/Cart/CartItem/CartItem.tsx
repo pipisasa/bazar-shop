@@ -26,9 +26,10 @@ export const CartItem: React.FC<Props> = ({
   onIncrement,
   onRemove,
 }) => {
-  const { title, image, price, salePrice, unit, quantity } = data;
+  const { title, images, price, salePrice, unit, quantity } = data;
   const displayPrice = salePrice ? salePrice : price;
   const totalPrice = quantity * displayPrice;
+  // console.log(images)
   return (
     <ItemBox>
       <Counter
@@ -37,7 +38,7 @@ export const CartItem: React.FC<Props> = ({
         onIncrement={onIncrement}
         variant='lightVertical'
       />
-      <Image src={image} />
+      <Image src={process.env.MEDIA_URL + images[0].image} />
       <Information>
         <Name>{title}</Name>
         <Price>

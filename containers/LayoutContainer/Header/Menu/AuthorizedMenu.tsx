@@ -21,11 +21,11 @@ const AUTHORIZED_MENU_ITEMS = [
     label: 'Checkout',
     intlId: 'navlinkCheckout',
   },
-  {
-    link: ALTERNATIVE_CHECKOUT_PAGE,
-    label: 'Checkout Alternative',
-    intlId: 'alternativeCheckout',
-  },
+  // {
+  //   link: ALTERNATIVE_CHECKOUT_PAGE,
+  //   label: 'Checkout Alternative',
+  //   intlId: 'alternativeCheckout',
+  // },
   {
     link: YOUR_ORDER,
     label: 'Order',

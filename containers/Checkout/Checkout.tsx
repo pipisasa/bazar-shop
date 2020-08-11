@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, FormEvent } from 'react';
 import Router from 'next/router';
 import Button from 'components/Button/Button';
 import RadioCard from 'components/RadioCard/RadioCard';
@@ -58,7 +58,7 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
   const { state, dispatch } = useContext(ProfileContext);
   const [loading, setLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
-  const { address, contact, card, schedules } = state;
+  const { address, contacts, cards, schedules } = state;
 
   const [deleteContactMutation] = useMutation(DELETE_CONTACT);
   const [deleteAddressMutation] = useMutation(DELETE_ADDRESS);
@@ -79,8 +79,8 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
       calculatePrice() > 0 &&
       cartItemsCount > 0 &&
       address.length &&
-      contact.length &&
-      card.length &&
+      contacts.length &&
+      cards.length &&
       schedules.length
     ) {
       setIsValid(true);
@@ -190,7 +190,7 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   sign='-'
                   currency='$'
                   price={calculateDiscount()}
-                  onClick={(e) => {
+                  onClick={(e:FormEvent) => {
                     e.preventDefault();
                     removeCoupon();
                   }}
@@ -244,7 +244,7 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   title={item.title}
                   content={item.time_slot}
                   name='schedule'
-                  checked={item.type === 'primary'}
+                  checked={item.Type === 'primary'}
                   withActionButtons={false}
                   onChange={() =>
                     dispatch({
@@ -274,7 +274,7 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                     title={item.name}
                     content={item.info}
                     name='address'
-                    checked={item.type === 'primary'}
+                    checked={item.Type === 'primary'}
                     onChange={() =>
                       dispatch({
                         type: 'SET_PRIMARY_ADDRESS',
@@ -312,14 +312,14 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
             </Heading>
             <ButtonGroup>
               <RadioGroup
-                items={contact}
+                items={contacts}
                 component={(item: any) => (
                   <RadioCard
                     id={item.id}
                     key={item.id}
-                    title={item.type}
+                    title={item.Type}
                     content={item.number}
-                    checked={item.type === 'primary'}
+                    checked={item.Type === 'primary'}
                     onChange={() =>
                       dispatch({
                         type: 'SET_PRIMARY_CONTACT',
@@ -356,27 +356,28 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                 defaultMessage='Select Payment Option'
               />
             </Heading>
-            <PaymentGroup
-              name='payment'
-              deviceType={deviceType}
-              items={card}
-              onEditDeleteField={(item: any, type: string) =>
-                handleEditDelete(item, type, 'payment')
-              }
-              onChange={(item: any) =>
-                dispatch({
-                  type: 'SET_PRIMARY_CARD',
-                  payload: item.id.toString(),
-                })
-              }
-              handleAddNewCard={() => {
-                handleModal(
-                  StripePaymentForm,
-                  { totalPrice: calculatePrice() },
-                  'add-address-modal stripe-modal'
-                );
-              }}
-            />
+              <PaymentGroup
+                name='payment'
+                deviceType={deviceType}
+                items={cards}
+                onEditDeleteField={(item: any, type: string) =>
+                  handleEditDelete(item, type, 'payment')
+                }
+                onChange={(item: any) =>
+                  dispatch({
+                    type: 'SET_PRIMARY_CARD',
+                    payload: item.id.toString(),
+                  })
+                }
+                handleAddNewCard={() => {
+                  handleModal(
+                    StripePaymentForm,
+                    { price: calculatePrice() },
+                    // { totalPrice: calculatePrice() },
+                    'add-address-modal stripe-modal'
+                  );
+                }}
+              />
           </PaymentOption>
           {/* CheckoutSubmit */}
           <CheckoutSubmit>

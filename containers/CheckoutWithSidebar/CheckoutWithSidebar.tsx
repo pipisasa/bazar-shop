@@ -6,8 +6,8 @@ import RadioCard from 'components/RadioCard/RadioCard';
 import RadioGroup from 'components/RadioGroup/RadioGroup';
 import PaymentGroup from 'components/PaymentGroup/PaymentGroup';
 import Loader from 'components/Loader/Loader';
-import UpdateAddress from './Update/UpdateAddress';
-import UpdateContact from './Update/UpdateContact';
+import UpdateContact from '../Checkout/Update/UpdateContact';
+import UpdateAddress from '../Checkout/Update/UpdateAddress';
 import StripePaymentForm from '../Payment/StripePaymentForm';
 import { DELETE_ADDRESS } from 'graphql/mutation/address';
 import { DELETE_CARD } from 'graphql/mutation/card';
@@ -61,10 +61,11 @@ import { FormattedMessage } from 'react-intl';
 import { useCart } from 'contexts/cart/use-cart';
 import { APPLY_COUPON } from 'graphql/mutation/coupon';
 import { useLocale } from 'contexts/language/language.provider';
+// import { getLocalState } from 'helper/localStorage';
 
 // The type of props Checkout Form receives
 interface MyFormProps {
-  token: string;
+  isAnonimus?: boolean;
   deviceType: any;
 }
 
@@ -90,7 +91,7 @@ const OrderItem: React.FC<CartItemProps> = ({ product }) => {
   );
 };
 
-const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
+const CheckoutWithSidebar: React.FC<MyFormProps> = ({ deviceType }) => {
   const [hasCoupon, setHasCoupon] = useState(false);
   const [couponCode, setCouponCode] = useState('');
   const [couponError, setError] = useState('');
@@ -110,7 +111,6 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
   const [loading, setLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const { address, contacts, cards, schedules } = state;
-
   const [deleteContactMutation] = useMutation(DELETE_CONTACT);
   const [deleteAddressMutation] = useMutation(DELETE_ADDRESS);
   const [deletePaymentCardMutation] = useMutation(DELETE_CARD);
@@ -124,6 +124,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
   const handleSubmit = async () => {
     setLoading(true);
     if (isValid) {
+      console.log(items, address, contacts, cards, schedules)
       clearCart();
       Router.push('/order-received');
     }
@@ -169,24 +170,25 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
       const modalComponent = name === 'address' ? UpdateAddress : UpdateContact;
       handleModal(modalComponent, item);
     } else {
+      // console.log(name, item, type, 'delete');
       switch (name) {
         case 'payment':
           dispatch({ type: 'DELETE_CARD', payload: item.id });
 
           return await deletePaymentCardMutation({
-            variables: { cardId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
         case 'contact':
           dispatch({ type: 'DELETE_CONTACT', payload: item.id });
 
           return await deleteContactMutation({
-            variables: { contactId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
         case 'address':
           dispatch({ type: 'DELETE_ADDRESS', payload: item.id });
 
           return await deleteAddressMutation({
-            variables: { addressId: JSON.stringify(item.id) },
+            variables: { slug: item.slug },
           });
         default:
           return false;
@@ -388,7 +390,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                     <span>{coupon.code}</span>
 
                     <RemoveCoupon
-                      onClick={(e) => {
+                      onClick={(e:any) => {
                         e.preventDefault();
                         removeCoupon();
                         setHasCoupon(false);
@@ -480,7 +482,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   autoHide
                   autoHeight
                   autoHeightMax='390px'
-                  renderView={(props) => (
+                  renderView={(props:any) => (
                     <div
                       {...props}
                       style={{
@@ -495,7 +497,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                 >
                   <ItemsWrapper>
                     {cartItemsCount > 0 ? (
-                      items.map((item) => (
+                      items.map((item:any) => (
                         <OrderItem key={`cartItem-${item.id}`} product={item} />
                       ))
                     ) : (

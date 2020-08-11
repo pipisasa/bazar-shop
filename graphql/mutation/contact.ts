@@ -1,28 +1,47 @@
 import gql from 'graphql-tag';
 
-export const UPDATE_CONTACT = gql`
-  mutation($contactInput: String!) {
-    updateContact(contactInput: $contactInput) {
-      id
-      name
-      contact {
+export const CREATE_CONTACT = gql`
+  mutation(
+    $number: String !
+  ){
+    createContact(
+      number:$number
+      type:"secondary"
+    ){
+      contact{
         id
-        type
+        slug
         number
+        Type
+      }
+    }
+  }
+`
+
+export const UPDATE_CONTACT = gql`
+  mutation(
+    $slug: String!
+    $number: String!
+    $type: String!
+  ) {
+    updateContact(
+      slug:$slug
+      number:$number
+      type:$type
+    ){
+      contact{
+        id
+        slug
+        number
+        Type
       }
     }
   }
 `;
 export const DELETE_CONTACT = gql`
-  mutation($contactId: String!) {
-    deleteContact(contactId: $contactId) {
-      id
-      name
-      contact {
-        id
-        type
-        number
-      }
+  mutation($slug: String!) {
+    deleteContact(slug: $slug) {
+      ok
     }
   }
 `;

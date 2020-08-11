@@ -1,11 +1,15 @@
 import React from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
+import { withApollo } from 'helper/apollo';
+import { useQuery } from '@apollo/react-hooks';
+import { GET_ME } from 'graphql/query/customer.query';
 // the redirect will only happen on the client-side. This is by design,
 const Index: React.FC = () => {
-  const router = useRouter();
+  // const router = useRouter();
+  // useQuery(GET_ME);
   React.useEffect(() => {
-    router.replace('/products');
+    Router.push('/products');
   });
   return (
     <Head>
@@ -14,4 +18,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default withApollo(Index);

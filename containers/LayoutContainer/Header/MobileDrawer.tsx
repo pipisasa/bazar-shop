@@ -24,16 +24,16 @@ import {
   UesrOptionMenu,
   DrawerMenuHeading,
 } from './Header.style';
-import UserImage from 'image/user.jpg';
+import UserImage from 'image/user.png';
 
 import {
   PROCEED_TO_CHECKOUT_PAGE,
-  ALTERNATIVE_CHECKOUT_PAGE,
+  // ALTERNATIVE_CHECKOUT_PAGE,
   PROFILE_PAGE,
   YOUR_ORDER,
   ORDER_RECEIVED,
   HELP_PAGE,
-  OFFER_PAGE,
+  // OFFER_PAGE,
 } from 'constants/navigation';
 import { TypeMenu } from './TypeMenu';
 
@@ -50,12 +50,12 @@ const DrawerMenuItems = [
     label: 'Checkout',
     href: PROCEED_TO_CHECKOUT_PAGE,
   },
-  {
-    id: 3,
-    label: 'Checkout Second',
-    intlLabelId: 'alternativeCheckout',
-    href: ALTERNATIVE_CHECKOUT_PAGE,
-  },
+  // {
+  //   id: 3,
+  //   label: 'Checkout Second',
+  //   intlLabelId: 'alternativeCheckout',
+  //   href: ALTERNATIVE_CHECKOUT_PAGE,
+  // },
   {
     id: 4,
     intlLabelId: 'navlinkProfile',
@@ -108,11 +108,11 @@ const MobileDrawer: React.FunctionComponent = () => {
       Router.push('/');
     }
   };
-  const resetSearch = () => {
-    dispatch({
-      type: 'RESET',
-    });
-  };
+  // const resetSearch = () => {
+  //   dispatch({
+  //     type: 'RESET',
+  //   });
+  // };
 
   const signInOutForm = () => {
     dispatch({
