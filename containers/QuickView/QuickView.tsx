@@ -70,10 +70,13 @@ const QuickView: React.FunctionComponent<QuickViewProps> = ({
     e.stopPropagation();
     removeItem(modalProps);
   };
-  function onCategoryClick(slug) {
+  function onCategoryClick(slug:string) {
     Router.push({
-      pathname: `/${Type.toLowerCase()}`,
-      query: { category: slug },
+      pathname: `/products`,
+      query: { 
+        category: slug, 
+        // type: Type.slug 
+      },
     }).then(() => window.scrollTo(0, 0));
     closeModal();
   }

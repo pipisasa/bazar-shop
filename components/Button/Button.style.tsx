@@ -19,6 +19,7 @@ type ButtonStyleProps = {
 const ButtonStyle = styled('button')<ButtonStyleProps>`
   /* button default style */
   cursor: pointer;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +87,21 @@ const ButtonStyle = styled('button')<ButtonStyleProps>`
       padding-left: ${themeGet('space.2', '8')}px;
       padding-right: ${themeGet('space.2', '8')}px;
     }
+  }
+  &::after{
+    content: '${(props:any)=>props.pointer}';
+    display: ${(props:any)=>(props.pointer ? 'flex' : 'none')};
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -2px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: orange;
+    color: #FFFFFF;
+    font-size: 10px;
   }
 
   /* Style system support */

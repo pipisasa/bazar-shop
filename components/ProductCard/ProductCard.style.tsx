@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 export const ProductCardWrapper = styled.div`
+  overflow: hidden;
   height: 100%;
   width: 100%;
   background-color: #fff;
@@ -10,6 +11,21 @@ export const ProductCardWrapper = styled.div`
   border-radius: 6px;
   cursor: pointer;
 `;
+
+export const ProductPreviewWrapper = styled.div`
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: rgba(0,0,0,.3);
+  z-index: 100;
+  transition: 1s;
+  display: ${({isOpen})=>isOpen ? 'flex' : 'none'};
+  align-items:center;
+  justify-content: center;
+  /* display:none; */
+`
 
 export const ProductImageWrapper = styled.div`
   height: 240px;

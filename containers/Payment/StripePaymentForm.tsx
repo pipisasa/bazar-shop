@@ -55,11 +55,11 @@ type Item = {
 const StripePaymentForm = ({ item: { price, buttonText } }: Item) => {
   const [getPayment] = useMutation(GET_PAYMENT);
   const sendTokenToServer = async (token: any) => {
-    console.log(JSON.stringify(token) , "stripe JSON.stringify(token)")
+    // console.log(JSON.stringify(token) , "stripe JSON.stringify(token)")
     const payment_info = await getPayment({
       variables: { token, amount: price },
     });
-    console.log(payment_info, 'payment_info');
+    // console.log(payment_info, 'payment_info');
   };
 
   return (

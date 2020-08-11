@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import SignInForm from "./SignIn";
-import SignOutForm from "./SignUp";
+import SignUpForm from "./SignUp";
 import ForgotPassForm from "./ForgotPass";
 import SignUpSuccessForm from './SignUpSuccess';
 import { AuthContext } from "contexts/auth/auth.context";
@@ -12,7 +12,7 @@ export default function AuthenticationForm() {
       return <SignInForm/>;
     case 'loading':
     case 'signUp':
-      return <SignOutForm/>;
+      return <SignUpForm/>;
     case 'signUpSuccess':
       return <SignUpSuccessForm/>;
     case 'forgotPass':

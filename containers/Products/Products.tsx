@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { openModal, closeModal } from '@redq/reuse-modal';
@@ -20,7 +20,8 @@ import Fade from 'react-reveal/Fade';
 import NoResultFound from 'components/NoResult/NoResult';
 import Router from 'next/router';
 import { GET_PRODUCTS } from 'graphql/query/product.query';
-import { getLocalState } from 'helper/localStorage';
+import { AuthContext } from 'contexts/auth/auth.context';
+// import { getLocalState } from 'helper/localStorage';
 // import fakeDB from '../../helper/fakeDB';
 
 const QuickView = dynamic(() => import('../QuickView/QuickView'));
@@ -42,7 +43,7 @@ export const Products: React.FC<ProductsProps> = (props) => {
     fetchLimit = 8,
     loadMore = true,
   } = props;
-  console.log(type, "Hello")
+  // console.log(type, "Hello")
   const router = useRouter(); 
   const [loadingMore, toggleLoading] = useState(false);
   let { data, error, loading, fetchMore } = useQuery(GET_PRODUCTS, {
@@ -115,9 +116,19 @@ export const Products: React.FC<ProductsProps> = (props) => {
   }
 
   
+  const {authDispatch} = useContext<any>(AuthContext)
   if(error) {
-    Router.push('/logout');
+    if(error.message === "Network error: Failed to fetch"){
+      return <div>"Network error!!!"</div>
+    }
+    if(error.message === "GraphQL error: Error decoding signature"){
+      Router.push('/logout');
+    }
+    // console.log(error.message)
     return null;
+    // authDispatch({type:'SIGN_OUT'});
+    // return "Error"
+    // alert('Error' + error)
   }
   if (!data || !data.products || data.products.items.length === 0) {
     return <NoResultFound />;
@@ -169,6 +180,7 @@ export const Products: React.FC<ProductsProps> = (props) => {
                   discountInPercent={item.discountPercent}
                   data={item}
                   deviceType={deviceType}
+                  link={'/product/'+ item.slug}
                   onClick={() =>
                     handleQuickViewModal(item, deviceType, handleModalClose)
                   }
@@ -199,4 +211,4 @@ export const Products: React.FC<ProductsProps> = (props) => {
     </>
   );
 };
-export default Products;
+export default (Products);

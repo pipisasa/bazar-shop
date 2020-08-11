@@ -154,7 +154,7 @@ const Checkout: React.FC<any> = () => {
                 type='text'
                 label='Medicine Name'
                 value=''
-                onUpdate={() => console.log('hello')}
+                // onUpdate={() => console.log('hello')}
                 style={{ backgroundColor: '#F7F7F7' }}
                 intlInputLabelId='rmMedicineName'
               />

@@ -124,6 +124,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ deviceType }) => {
   const handleSubmit = async () => {
     setLoading(true);
     if (isValid) {
+      console.log(items, address, contacts, cards, schedules)
       clearCart();
       Router.push('/order-received');
     }
@@ -169,7 +170,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ deviceType }) => {
       const modalComponent = name === 'address' ? UpdateAddress : UpdateContact;
       handleModal(modalComponent, item);
     } else {
-      console.log(name, item, type, 'delete');
+      // console.log(name, item, type, 'delete');
       switch (name) {
         case 'payment':
           dispatch({ type: 'DELETE_CARD', payload: item.id });

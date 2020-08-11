@@ -17,7 +17,7 @@ type Action =
   | { type: 'SET_PRIMARY_SCHEDULE'; payload: any }
   | { type: 'SET_PRIMARY_CARD'; payload: any };
 function reducer(state: any, action: Action): any {
-  console.log(action)
+  // console.log(action)
   switch (action.type) {
     case 'UPDATE_ME_INFO': 
     return {...action.payload, schedules};

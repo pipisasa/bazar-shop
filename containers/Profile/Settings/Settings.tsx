@@ -107,7 +107,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
     const { firstName, lastName, email } = state;
     const prevProfile =  JSON.parse(localStorage.getItem("profileInfo"));
     const variables = Object.fromEntries(Object.entries({firstName, lastName, email}).filter(([key, val])=>val !== prevProfile[key]))
-    console.log(variables)
+    // console.log(variables)
     await updateMeMutation({ variables });
   };
 

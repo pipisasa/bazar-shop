@@ -40,7 +40,7 @@ const UpdateAddress: React.FC<Props> = ({ item }) => {
     // state, 
   dispatch } = useContext(ProfileContext);
   const handleSubmit = async (values: FormValues, { setSubmitting }: any) => {
-    console.log(values)
+    // console.log(values)
     const {data} = await addAddressMutation({
       variables: values,
     });

@@ -1,21 +1,3 @@
-// import React from 'react';
-// import Head from 'next/head';
-// import { useRouter } from 'next/router';
-// // the redirect will only happen on the client-side. This is by design,
-// const Index: React.FC = () => {
-//   const router = useRouter();
-//   React.useEffect(() => {
-//     router.replace('/men');
-//   });
-//   return (
-//     <Head>
-//       <meta name="robots" content="noindex, nofollow" />
-//     </Head>
-//   );
-// };
-
-// export default Index;
-
 import React from 'react';
 import { useRouter } from 'next/router';
 import { Modal } from '@redq/reuse-modal';
@@ -39,7 +21,7 @@ import storeType from 'constants/storeType';
 
 const PAGE_TYPE = 'men';
 
-function WomenClothsPage({ deviceType }) {
+function ProductsPage({ deviceType }) {
   const { query } = useRouter();
   const targetRef = React.useRef(null);
   React.useEffect(() => {
@@ -128,4 +110,4 @@ function WomenClothsPage({ deviceType }) {
   );
 }
 
-export default withApollo(WomenClothsPage);
+export default withApollo(ProductsPage);

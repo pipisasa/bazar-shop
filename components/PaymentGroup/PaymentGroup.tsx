@@ -146,3 +146,37 @@ const PaymentGroup: React.FunctionComponent<PaymentGroupProps> = ({
 };
 
 export default PaymentGroup;
+
+// TODO надо удалить
+// let a = {
+//   "id":"tok_1HEuH3H3UCpAVYYr7u3i8Rhv",
+//   "object":"token",
+//   "card":{
+//     "id":"card_1HEuH2H3UCpAVYYr8W8TnwQZ",
+//     "object":"card",
+//     "address_city":null,
+//     "address_country":null,
+//     "address_line1":null,
+//     "address_line1_check":null,
+//     "address_line2":null,
+//     "address_state":null,
+//     "address_zip":null,
+//     "address_zip_check":null,
+//     "brand":"Visa",
+//     "country":"KG",
+//     "cvc_check":"unchecked",
+//     "dynamic_last4":null,
+//     "exp_month":7,
+//     "exp_year":2023,
+//     "funding":"debit",
+//     "last4":"7878",
+//     "metadata":{},
+//     "name":"Name",
+//     "tokenization_method":null
+//   },
+//   "client_ip":"212.112.119.149",
+//   "created":1597140005,
+//   "livemode":false,
+//   "type":"card",
+//   "used":false
+// }
