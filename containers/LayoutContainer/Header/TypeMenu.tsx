@@ -14,21 +14,21 @@ import Router from 'next/router';
 const MENU_ITEMS = [
     {
       id:1,
-      link: '/products?type=men',
+      link: '/?type=men',
       label: 'Men',
       // icon: <DressIcon />,
       intlId: 'navMenMenu',
     },
     {
       id:2,
-      link: '/products?type=women',
+      link: '/?type=women',
       label: 'Women',
       // icon: <DressIcon />,
       intlId: 'navWomenMenu',
     },
     {
       id:3,
-      link: '/products?type=kids',
+      link: '/?type=kids',
       label: 'Kids',
       // icon: <DressIcon />,
       intlId: 'navKidsMenu',
@@ -82,7 +82,7 @@ export const TypeMenu = ({ onClick }) => {
         <NavLink 
           onClick={()=>{Router.push('/')}}
           label="All"
-          href="/products"
+          href="/"
           intlId="intlAll"
           className='drawer_menu_item'
         />

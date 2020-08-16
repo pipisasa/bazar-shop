@@ -14,8 +14,8 @@ const CartButton = () => {
   } = useCart();
   const handleClick = ()=>{
     toggleCart()
-    if(location.pathname !== '/products') {
-      Router.push('/products');
+    if(location.pathname !== '/') {
+      Router.push('/');
     }
     
   }

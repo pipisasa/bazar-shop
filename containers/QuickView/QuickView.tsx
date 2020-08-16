@@ -72,7 +72,7 @@ const QuickView: React.FunctionComponent<QuickViewProps> = ({
   };
   function onCategoryClick(slug:string) {
     Router.push({
-      pathname: `/products`,
+      pathname: `/`,
       query: { 
         category: slug, 
         // type: Type.slug 
