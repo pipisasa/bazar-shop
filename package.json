@@ -6,7 +6,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "shop-dev": "next"
+    "serve": "next -p 80",
+    "serve-build": "next start -p 80"
   },
   "dependencies": {
     "@apollo/react-hooks": "3.1.4",
