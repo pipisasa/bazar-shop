@@ -48,7 +48,7 @@ export const Products: React.FC<ProductsProps> = (props) => {
   const [loadingMore, toggleLoading] = useState(false);
   let { data, error, loading, fetchMore } = useQuery(GET_PRODUCTS, {
     variables:{
-      type: router.query.type || type,
+      type: router.query.type,
       offset: 0,
       limit: fetchLimit,
       text:router.query.text,

@@ -31,7 +31,7 @@ const Header: React.FC<Props> = ({ className }) => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('access_token');
       authDispatch({ type: 'SIGN_OUT' });
-      Router.push('/products');
+      Router.push('/');
     }
   };
 

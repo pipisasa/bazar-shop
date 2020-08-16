@@ -60,85 +60,90 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const { addItem, removeItem, getItem, isInCart, items } = useCart();
   const handleAddClick = (e) => {
-    e.stopPropagation();
+    // e.stopPropagation();
+    e.preventDefault();
     addItem(data);
     if (!isInCart(data.id)) {
       cartAnimation(e);
     }
   };
   const handleRemoveClick = (e) => {
-    e.stopPropagation();
+    // e.stopPropagation();
+    e.preventDefault();
     removeItem(data);
   };
   const [isOpen, setIsOpen] = useState(false);
   const handleCLickPreview = (e)=>{
-    e.stopPropagation()
+    // e.stopPropagation()
+    e.preventDefault()
     onClick(e);
   }
   const route = useRouter();
   return (
-    <ProductCardWrapper onClick={()=>{route.replace(link)}} className="product-card">
-      <ProductImageWrapper onMouseOver={()=>setIsOpen(true)} onMouseOut={()=>setIsOpen(false)}>
-        <ProductPreviewWrapper isOpen={isOpen}>
-          <Button onClick={handleCLickPreview} size="small" title="preview"/>
-        </ProductPreviewWrapper>
-        <Image
-          url={image}
-          media
-          className="product-image"
-          style={{ position: 'relative' }}
-          alt={title}
-        />
-        {discountInPercent ? (
-          <>
-            <DiscountPercent>{discountInPercent}%</DiscountPercent>
-          </>
-        ) : (
-          ''
-        )}
-      </ProductImageWrapper>
-      <ProductInfo>
-        <h3 className="product-title">{title}</h3>
-        <span className="product-weight">{weight}</span>
-        <div className="product-meta">
-          <div className="productPriceWrapper">
-            {discountInPercent ? (
-              <span className="discountedPrice">
-                {currency}
-                {price}
-              </span>
-            ) : (
-              ''
-            )}
-
-            <span className="product-price">
-              {currency}
-              {salePrice ? salePrice : price}
-            </span>
-          </div>
-
-          {!isInCart(data.id) ? (
-            <Button
-              title="Cart"
-              intlButtonId="addCartButton"
-              iconPosition="left"
-              colors="primary"
-              size="small"
-              variant="outlined"
-              className="cart-button"
-              icon={<CartIcon />}
-              onClick={handleAddClick}
-            />
+    <a href={link} target="_blank">
+      <ProductCardWrapper className="product-card">
+        <ProductImageWrapper onClick={handleCLickPreview} onMouseOver={()=>setIsOpen(true)} onMouseOut={()=>setIsOpen(false)}>
+          <ProductPreviewWrapper isOpen={isOpen}>
+            <Button size="small" title="preview"/>
+          </ProductPreviewWrapper>
+          <Image
+            url={image}
+            media
+            className="product-image"
+            style={{ position: 'relative' }}
+            alt={title}
+          />
+          {discountInPercent ? (
+            <>
+              <DiscountPercent>{discountInPercent}%</DiscountPercent>
+            </>
           ) : (
-            <Counter
-              value={getItem(data.id).quantity}
-              onDecrement={handleRemoveClick}
-              onIncrement={handleAddClick}
-            />
+            ''
           )}
-        </div>
-      </ProductInfo>
-    </ProductCardWrapper>
+        </ProductImageWrapper>
+        <ProductInfo>
+          <h3 className="product-title">{title}</h3>
+          <span className="product-weight">{weight}</span>
+          <div className="product-meta">
+            <div className="productPriceWrapper">
+              {discountInPercent ? (
+                <span className="discountedPrice">
+                  {currency}
+                  {price}
+                </span>
+              ) : (
+                ''
+              )}
+
+              <span className="product-price">
+                {currency}
+                {salePrice ? salePrice : price}
+              </span>
+            </div>
+
+            {!isInCart(data.id) ? (
+              <Button
+                title="Cart"
+                intlButtonId="addCartButton"
+                iconPosition="left"
+                colors="primary"
+                size="small"
+                variant="outlined"
+                className="cart-button"
+                icon={<CartIcon />}
+                onClick={handleAddClick}
+              />
+            ) : (
+              <Counter
+                value={getItem(data.id).quantity}
+                onDecrement={handleRemoveClick}
+                onIncrement={handleAddClick}
+              />
+            )}
+          </div>
+        </ProductInfo>
+      </ProductCardWrapper>
+    </a>
   );
 };
 

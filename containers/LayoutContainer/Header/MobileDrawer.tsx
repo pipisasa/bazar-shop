@@ -42,7 +42,7 @@ const DrawerMenuItems = [
     id: 1,
     intlLabelId: 'navLinkHome',
     label: 'Home',
-    href: '/products',
+    href: '/',
   },
   {
     id: 2,
