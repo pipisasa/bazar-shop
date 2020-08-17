@@ -277,7 +277,7 @@ export const BannerCarousel = ({
   }
   return (
     <div style={{padding: '90px 0 0 0'}} dir="ltr">
-      <div style={{position:'relative', width:"100%", height:"100%"}}>
+      <div style={{position:'relative',zIndex: 2, width:"100%", height:"100%"}}>
         <Carousel
           arrows={false}
           responsive={responsive}

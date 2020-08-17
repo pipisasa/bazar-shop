@@ -3,11 +3,11 @@
   "version": "2.0.2",
   "private": true,
   "scripts": {
-    "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "serve": "next -p 80",
-    "serve-build": "next start -p 80"
+    "start": "next -p 80",
+    "serve": "next start -p 80",
+    "start:dev": "next",
+    "serve:dev": "next start"
   },
   "dependencies": {
     "@apollo/react-hooks": "3.1.4",

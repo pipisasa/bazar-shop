@@ -8,6 +8,8 @@ const nextConfig = {
     // API_URL: 'http://localhost:4000/shop/graphql',
     API_URL: 'http://34.67.187.223/graphql',
     MEDIA_URL: 'http://34.67.187.223/media/',
+    // API_URL: 'http://backend-marketplace.ml/graphql',
+    // MEDIA_URL: 'http://backend-marketplace.ml/media/',
   },
   webpack: (config) => {
     config.resolve.modules.push(__dirname);
