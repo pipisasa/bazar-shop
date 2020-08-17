@@ -39,7 +39,7 @@ export const RightMenu: React.FC<Props> = ({
         iconClass="menu-icon"
         icon={<HelpIcon />}
       /> */}
-      <LanguageSwitcher />
+      {/* <LanguageSwitcher /> */}
 
       <CartButton/>
 
