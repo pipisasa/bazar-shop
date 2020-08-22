@@ -1,5 +1,7 @@
-export const cartItemsTotalPrice = (items, coupon = null) => {
-  let total = items.reduce((price, product) => {
+import { getLocalCart } from "./use-cart";
+
+export const cartItemsTotalPrice = (items:any, coupon = null) => {
+  let total = items.reduce((price:any, product:any) => {
     if (product.salePrice) {
       return price + product.salePrice * product.quantity;
     }
@@ -12,9 +14,9 @@ export const cartItemsTotalPrice = (items, coupon = null) => {
   return total - discount;
 };
 // cartItems, cartItemToAdd
-const addItemToCart = (state, action) => {
+const addItemToCart = (state:any, action:any) => {
   const existingCartItemIndex = state.items.findIndex(
-    (item) => item.id === action.payload.id
+    (item:any) => item.id === action.payload.id
   );
 
   if (existingCartItemIndex > -1) {
@@ -22,12 +24,14 @@ const addItemToCart = (state, action) => {
     newState[existingCartItemIndex].quantity += action.payload.quantity;
     return newState;
   }
-  return [...state.items, action.payload];
+  const result = [...state.items, action.payload];
+  localStorage.setItem("cart", JSON.stringify(result));
+  return result;
 };
 
 // cartItems, cartItemToRemove
-const removeItemFromCart = (state, action) => {
-  return state.items.reduce((acc, item) => {
+const removeItemFromCart = (state:any, action:any) => {
+  return state.items.reduce((acc:any, item:any) => {
     if (item.id === action.payload.id) {
       const newQuantity = item.quantity - action.payload.quantity;
 
@@ -35,15 +39,19 @@ const removeItemFromCart = (state, action) => {
         ? [...acc, { ...item, quantity: newQuantity }]
         : [...acc];
     }
-    return [...acc, item];
+    const result = [...acc, item];
+    localStorage.setItem("cart", JSON.stringify(result));
+    return result;
   }, []);
 };
 
-const clearItemFromCart = (state, action) => {
-  return state.items.filter((item) => item.id !== action.payload.id);
+const clearItemFromCart = (state:any, action:any) => {
+  const result = state.items.filter((item:any) => item.id !== action.payload.id);
+  localStorage.setItem("cart", JSON.stringify(result));
+  return result;
 };
 
-export const reducer = (state, action) => {
+export const reducer = (state:any, action:any) => {
   // console.log(action);
   switch (action.type) {
     case 'REHYDRATE':
@@ -62,6 +70,9 @@ export const reducer = (state, action) => {
       return { ...state, coupon: action.payload };
     case 'REMOVE_COUPON':
       return { ...state, coupon: null };
+    case 'REFRESH_CART':
+      // console.log("REFRESH CART", {...state, items: state.items.length ? [...state.items] : [...getLocalCart()]})
+      return {...state, items: getLocalCart()}
     default:
       throw new Error(`Unknown action: ${action.type}`);
   }

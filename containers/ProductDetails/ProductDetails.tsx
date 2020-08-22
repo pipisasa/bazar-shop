@@ -83,7 +83,7 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
                   color: '#77798c',
                 }}
                 icon={<LongArrowLeft />}
-                onClick={Router.back}
+                onClick={()=>Router.push('/')}
               />
             </BackButton>
 

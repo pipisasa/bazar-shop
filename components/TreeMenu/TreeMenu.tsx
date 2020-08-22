@@ -55,7 +55,7 @@ type Props = {
 };
 export const TreeMenu: React.FC<Props> = ({
   data,
-  className,
+  // className,
   onClick,
   active,
 }) => {
@@ -63,7 +63,7 @@ export const TreeMenu: React.FC<Props> = ({
     if(!Array.isArray(children)) return []
     return children.map((subOption) => {
       // console.log(subOption.slug)
-      if (!subOption.children) {
+      if (!subOption.children.length) {
         return (
           <Tree
             key={subOption.title}
@@ -93,7 +93,7 @@ export const TreeMenu: React.FC<Props> = ({
     });
   };
   return <>
-    <Frame depth="child">
+    <Frame depth="parent">
       <Header 
         open={
           active === ""

@@ -20,7 +20,7 @@ import Fade from 'react-reveal/Fade';
 import NoResultFound from 'components/NoResult/NoResult';
 import Router from 'next/router';
 import { GET_PRODUCTS } from 'graphql/query/product.query';
-import { AuthContext } from 'contexts/auth/auth.context';
+// import { AuthContext } from 'contexts/auth/auth.context';
 // import { getLocalState } from 'helper/localStorage';
 // import fakeDB from '../../helper/fakeDB';
 
@@ -39,13 +39,14 @@ type ProductsProps = {
 export const Products: React.FC<ProductsProps> = (props) => {
   const {
     deviceType,
-    type,
+    // type,
     fetchLimit = 8,
     loadMore = true,
   } = props;
   // console.log(type, "Hello")
   const router = useRouter(); 
   const [loadingMore, toggleLoading] = useState(false);
+  // console.log(router.query)
   let { data, error, loading, fetchMore } = useQuery(GET_PRODUCTS, {
     variables:{
       type: router.query.type,
@@ -68,15 +69,15 @@ export const Products: React.FC<ProductsProps> = (props) => {
     deviceType: any,
     onModalClose: any
   ) => {
-    if (router.pathname === '/product/[slug]') {
-      const as = `/product/${modalProps.slug}`;
-      router.push(router.pathname, as);
-      return;
-    }
+    // if (router.pathname === '/product/[slug]') {
+    //   const as = `/product/${modalProps.slug}`;
+    //   router.push(router.pathname, as);
+    //   return;
+    // }
     openModal({
       show: true,
       overlayClassName: 'quick-view-overlay',
-      closeOnClickOutside: false,
+      closeOnClickOutside: !false,
       component: QuickView,
       componentProps: { modalProps, deviceType, onModalClose },
       closeComponent: 'div',
@@ -94,9 +95,9 @@ export const Products: React.FC<ProductsProps> = (props) => {
         },
       },
     });
-    const href = router.asPath;
-    const as = `/product/${modalProps.slug}`;
-    router.push(href, as, { shallow: true });
+    // const href = router.asPath;
+    // const as = `/product/${modalProps.slug}`;
+    // router.push(href, as, { shallow: true });
   };
 
   if (loading) {
@@ -116,7 +117,7 @@ export const Products: React.FC<ProductsProps> = (props) => {
   }
 
   
-  const {authDispatch} = useContext<any>(AuthContext)
+  // const {authDispatch} = useContext<any>(AuthContext)
   if(error) {
     if(error.message === "Network error: Failed to fetch"){
       return <div>"Network error!!!"</div>

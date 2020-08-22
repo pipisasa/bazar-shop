@@ -1,10 +1,16 @@
 import React, { useReducer, useContext, createContext } from 'react';
 import { reducer, cartItemsTotalPrice } from './cart.reducer';
+import { getLocalState } from 'helper/localStorage';
 // import { useStorage } from 'helper/use-storage';
 const CartContext = createContext({} as any);
+
+export const getLocalCart = ()=>getLocalState("cart") ? getLocalState("cart") : [];
+
+console.log(getLocalCart())
+
 const INITIAL_STATE = {
   isOpen: false,
-  items: [],
+  items: getLocalCart(),
   coupon: null,
 };
 
@@ -14,6 +20,8 @@ const useCartActions = (initialCart = INITIAL_STATE) => {
   const addItemHandler = (item:any, quantity = 1) => {
     dispatch({ type: 'ADD_ITEM', payload: { ...item, quantity } });
   };
+
+  const refreshCart = ()=>dispatch({type: "REFRESH_CART"});
 
   const removeItemHandler = (item:any, quantity = 1) => {
     dispatch({ type: 'REMOVE_ITEM', payload: { ...item, quantity } });
@@ -75,6 +83,7 @@ const useCartActions = (initialCart = INITIAL_STATE) => {
     couponHandler,
     removeCouponHandler,
     getDiscount,
+    refreshCart,
   };
 };
 
@@ -95,6 +104,7 @@ export const CartProvider = ({ children }) => {
     removeCouponHandler,
     getCartItemsPrice,
     getDiscount,
+    refreshCart
   } = useCartActions();
   // const { rehydrated, error } = useStorage(state, rehydrateLocalState);
 
@@ -104,7 +114,7 @@ export const CartProvider = ({ children }) => {
         isOpen: state.isOpen,
         items: state.items,
         coupon: state.coupon,
-        cartItemsCount: state.items?.length,
+        cartItemsCount: state.items.length,
         itemsCount: getItemsCount,
         getCartItemsCount: state.items?.length ? state.items.reduce((a:Number,b:any)=>a+b.quantity,0): null,
         addItem: addItemHandler,
@@ -119,6 +129,7 @@ export const CartProvider = ({ children }) => {
         applyCoupon: couponHandler,
         removeCoupon: removeCouponHandler,
         calculateDiscount: getDiscount,
+        refreshCart,
       }}
     >
       {children}

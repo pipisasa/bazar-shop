@@ -6,10 +6,20 @@ export const GET_CATEGORIES = gql`
       id
       title
       slug
-      parent{
+      children{
         id
         title
         slug
+        children{
+          id
+          title
+          slug
+          children{
+            id
+            title
+            slug
+          }
+        }
       }
     }
   }
