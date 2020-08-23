@@ -1,1 +1,0 @@
-{"ast":null,"code":"import styled from 'styled-components';\nexport var LayoutWrapper = styled.div.withConfig({\n  displayName: \"Layoutstyle__LayoutWrapper\",\n  componentId: \"sc-14p4e1l-0\"\n})([\"background-color:#f7f7f7;.reuseModalHolder{padding:0;overflow:auto;border-radius:3px 3px 0 0;border:0;}\"]);","map":null,"metadata":{},"sourceType":"module"}

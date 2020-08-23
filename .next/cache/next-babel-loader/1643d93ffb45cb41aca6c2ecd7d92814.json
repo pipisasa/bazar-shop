@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { PRODUCTS } from './navigation';\nexport default [{\n  link: PRODUCTS,\n  icon: '',\n  label: 'Products'\n}];","map":null,"metadata":{},"sourceType":"module"}

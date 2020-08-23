@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { HOME_PAGE, PRODUCTS } from 'constants/navigation';\nconst arr = [HOME_PAGE, PRODUCTS];\nexport function isCategoryPage(pathname) {\n  return arr.includes(pathname);\n}","map":null,"metadata":{},"sourceType":"module"}
