@@ -21,25 +21,21 @@ const CartButton = () => {
     if(path === '/' || path === '/product/[slug]')return;
     Router.push('/');
   }
-  const [a, setA] = useState(true)
-  useEffect(() => {
-    if(typeof window !== "undefined" && globalThis === window){
-      refreshCart()
-      setA(false);
-    }
-  }, [a])
+  
   // console.log(getCartItemsCount)     
   return (
-    <Button
-      className='product-cart'
-      onClick={handleClick}
-      style={{padding:"15px", marginRight:"15px"}}
-      size="small"
-      icon={<ShoppingBag/>}
-      // pointer={cartItemsCount}
-      pointer={items.length}
-      intlButtonId="qwerty"
-      />
+    <CartProvider>
+      <Button
+        className='product-cart'
+        onClick={handleClick}
+        style={{padding:"15px", marginRight:"15px"}}
+        size="small"
+        icon={<ShoppingBag/>}
+        // pointer={cartItemsCount}
+        pointer={items.length}
+        intlButtonId="qwerty"
+        />
+    </CartProvider>
   )
 }
 export default (CartButton);
