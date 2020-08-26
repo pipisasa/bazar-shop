@@ -22,7 +22,7 @@ const Spinner = styled.div`
   /* height: ${(props:any) => (props.height ? props.height : '24px')};
   height: 24px; */
   border: 4px solid #ffffff;
-  border-top: 4px solid #009e7f;
+  border-top: 4px solid #3da2ff;
   border-radius: 50%;
   transition-property: transform;
   animation-name: ${rotate};

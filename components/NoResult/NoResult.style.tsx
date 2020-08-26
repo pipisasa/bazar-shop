@@ -48,7 +48,7 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  background-color: #009e7f;
+  background-color: #3da2ff;
   height: 50px;
   border-radius: 6px;
   font-family: 'Lato', sans-serif;

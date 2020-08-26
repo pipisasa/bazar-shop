@@ -1,10 +1,18 @@
 import React, { useReducer, useContext, createContext } from 'react';
 import { reducer, cartItemsTotalPrice } from './cart.reducer';
-import { getLocalState } from 'helper/localStorage';
 // import { useStorage } from 'helper/use-storage';
 const CartContext = createContext({} as any);
 
-export const getLocalCart = ()=>getLocalState("cart") ? getLocalState("cart") : [];
+export const getLocalCart = ()=>{
+  try {
+    let val = localStorage.getItem("cart");
+    if(!val || val === "null")return [];
+    const json = JSON.parse(val);
+    return json;
+  } catch (e) {
+    return [];
+  }
+};
 
 console.log(getLocalCart())
 
@@ -12,6 +20,7 @@ const INITIAL_STATE = {
   isOpen: false,
   items: getLocalCart(),
   coupon: null,
+  count: getLocalCart().length
 };
 
 const useCartActions = (initialCart = INITIAL_STATE) => {
@@ -21,7 +30,7 @@ const useCartActions = (initialCart = INITIAL_STATE) => {
     dispatch({ type: 'ADD_ITEM', payload: { ...item, quantity } });
   };
 
-  const refreshCart = ()=>dispatch({type: "REFRESH_CART"});
+  const refreshCart = ()=>dispatch({type: "REFRESH_CART", payload: getLocalCart()});
 
   const removeItemHandler = (item:any, quantity = 1) => {
     dispatch({ type: 'REMOVE_ITEM', payload: { ...item, quantity } });
@@ -90,7 +99,7 @@ const useCartActions = (initialCart = INITIAL_STATE) => {
 export const CartProvider = ({ children }) => {
   const {
     state,
-    // rehydrateLocalState,
+    rehydrateLocalState,
     getItemsCount,
     addItemHandler,
     removeItemHandler,
@@ -111,6 +120,7 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
+        state,
         isOpen: state.isOpen,
         items: state.items,
         coupon: state.coupon,
@@ -130,6 +140,7 @@ export const CartProvider = ({ children }) => {
         removeCoupon: removeCouponHandler,
         calculateDiscount: getDiscount,
         refreshCart,
+        rehydrateLocalState,
       }}
     >
       {children}

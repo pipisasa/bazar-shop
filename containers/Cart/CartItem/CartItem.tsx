@@ -51,7 +51,7 @@ export const CartItem: React.FC<Props> = ({
       </Information>
       <Total>
         {CURRENCY}
-        {(quantity * displayPrice).toFixed(2)}
+        {totalPrice.toFixed(2)}
       </Total>
       <RemoveButton onClick={onRemove}>
         <CloseIcon />

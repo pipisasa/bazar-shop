@@ -52,10 +52,11 @@ export const Products: React.FC<ProductsProps> = (props) => {
       type: router.query.type,
       offset: 0,
       limit: fetchLimit,
-      text:router.query.text,
-      category:router.query.category
+      text: router.query.text,
+      category: router.query.category
     },
   });
+  // console.log(router.query, "router")
   // console.log(data)
   // Quick View Modal
   const handleModalClose = () => {
@@ -199,12 +200,12 @@ export const Products: React.FC<ProductsProps> = (props) => {
             intlButtonId="loadMoreBtn"
             size="small"
             isLoading={loadingMore}
-            loader={<Loader color="#009E7F" />}
+            loader={<Loader color="#3da2ff" />}
             style={{
               minWidth: 135,
               backgroundColor: '#ffffff',
               border: '1px solid #f1f1f1',
-              color: '#009E7F',
+              color: '#3da2ff',
             }}
           />
         </ButtonWrapper>

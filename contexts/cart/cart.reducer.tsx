@@ -22,6 +22,7 @@ const addItemToCart = (state:any, action:any) => {
   if (existingCartItemIndex > -1) {
     const newState = [...state.items];
     newState[existingCartItemIndex].quantity += action.payload.quantity;
+    localStorage.setItem("cart", JSON.stringify(newState))
     return newState;
   }
   const result = [...state.items, action.payload];
@@ -35,9 +36,11 @@ const removeItemFromCart = (state:any, action:any) => {
     if (item.id === action.payload.id) {
       const newQuantity = item.quantity - action.payload.quantity;
 
-      return newQuantity > 0
+      let a = newQuantity > 0
         ? [...acc, { ...item, quantity: newQuantity }]
         : [...acc];
+      localStorage.setItem("cart", JSON.stringify(a));
+      return a;
     }
     const result = [...acc, item];
     localStorage.setItem("cart", JSON.stringify(result));
@@ -72,7 +75,7 @@ export const reducer = (state:any, action:any) => {
       return { ...state, coupon: null };
     case 'REFRESH_CART':
       // console.log("REFRESH CART", {...state, items: state.items.length ? [...state.items] : [...getLocalCart()]})
-      return {...state, items: getLocalCart()}
+      return {...state, items: action.payload}
     default:
       throw new Error(`Unknown action: ${action.type}`);
   }

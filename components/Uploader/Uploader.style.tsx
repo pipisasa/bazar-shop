@@ -11,7 +11,7 @@ export const Text = styled.span`
 `;
 
 export const TextHighlighted = styled.span`
-  color: ${themeGet('colors.primary', '#009e7f')};
+  color: ${themeGet('colors.primary', '#3da2ff')};
 `;
 
 export const Container = styled.div`

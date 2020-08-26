@@ -138,7 +138,7 @@ const ItemPrice = styled('span')`
   font-family: 'Lato', sans-serif;
   font-size: ${themeGet('fontSizes.1', '13')}px;
   font-weight: ${themeGet('fontWeights.3', '400')};
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#3da2ff')};
 `;
 
 const TotalPrice = styled.span`

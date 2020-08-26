@@ -91,9 +91,9 @@ const CartPopUp: React.FC<CartProps> = ({
         <>
           <CartPopupBack onClick={(e)=>{if(e.target === e.currentTarget){toggleCart()}}} isOpen={isOpen}>
             <CartSlidePopup className={cartSliderClass}>
-              {isOpen && (
+              {/* {isOpen && ( */}
                 <CartItem onCloseBtnClick={toggleCart} scrollbarHeight='100vh' />
-              )}
+              {/* )} */}
             </CartSlidePopup>
           </CartPopupBack>
 

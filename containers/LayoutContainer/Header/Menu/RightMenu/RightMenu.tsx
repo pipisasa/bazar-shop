@@ -47,7 +47,7 @@ export const RightMenu: React.FC<Props> = ({
         <Button
           onClick={onJoin}
           size="small"
-          title="Join"
+          title="Login"
           style={{ fontSize: 15, color: '#fff' }}
           intlButtonId="joinButton"
         />

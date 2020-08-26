@@ -131,7 +131,7 @@ const ButtonPrev = styled('button')`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#3da2ff')};
   padding: 0;
   border-radius: 20px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -152,7 +152,7 @@ const ButtonNext = styled('button')`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#3da2ff')};
   padding: 0;
   border-radius: 20px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);

@@ -28,10 +28,10 @@ export const RightMenuBox = styled.div`
         font-size: 15px;
       }
       &:hover {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#3da2ff')};
       }
       &.current-page {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#3da2ff')};
       }
     }
   }

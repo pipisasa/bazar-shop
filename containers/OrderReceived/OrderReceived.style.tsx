@@ -55,8 +55,8 @@ export const OrderRecivedContainer = styled.div`
     }
 
     &:hover {
-      background-color: ${themeGet('colors.primary', '#009E7F')};
-      border-color: ${themeGet('colors.primary', '#009E7F')};
+      background-color: ${themeGet('colors.primary', '#3da2ff')};
+      border-color: ${themeGet('colors.primary', '#3da2ff')};
       color: #fff;
     }
   }

@@ -174,7 +174,7 @@ export const ProductPrice = styled.div`
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   font-weight: ${themeGet('fontWeights.6', '700')};
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#3da2ff')};
 `;
 
 export const SalePrice = styled.span`

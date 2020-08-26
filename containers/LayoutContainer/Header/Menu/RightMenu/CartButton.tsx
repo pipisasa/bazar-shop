@@ -11,6 +11,8 @@ const CartButton = () => {
     toggleCart, 
     // calculatePrice 
     // getCartItemsCount,
+    state,
+    rehydrateLocalState,
     items,
     refreshCart
   } = useCart();
@@ -21,6 +23,10 @@ const CartButton = () => {
     if(path === '/' || path === '/product/[slug]')return;
     Router.push('/');
   }
+  useEffect(()=>{
+    // rehydrateLocalState({count: getLocalCart().length})
+    // console.log(getLocalCart())
+  },[])
   
   // console.log(getCartItemsCount)     
   return (
@@ -32,7 +38,7 @@ const CartButton = () => {
         size="small"
         icon={<ShoppingBag/>}
         // pointer={cartItemsCount}
-        pointer={items.length}
+        pointer={state.items.length}
         intlButtonId="qwerty"
         />
     </CartProvider>

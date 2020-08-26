@@ -188,7 +188,7 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
   const { isRtl } = useLocale();
 
   const handleCategorySelection = (slug: string) => {
-    console.log(state, "query")
+    // console.log(state, "query")
     const updatedQuery = state.text
     ? { text: state.text, category: slug }
     : { category: slug };

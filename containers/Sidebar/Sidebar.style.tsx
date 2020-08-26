@@ -48,7 +48,7 @@ export const RequestMedicine = styled.span`
   align-items: center;
   margin-bottom: 20px;
   padding-left: 50px;
-  background-color: ${themeGet('colors.primary', '#009E7F')};
+  background-color: ${themeGet('colors.primary', '#3da2ff')};
   font-size: 14px;
   font-weight: 700;
   color: #ffffff;

@@ -153,10 +153,10 @@ const HeaderWrapper = styled.header`
             border-bottom: 0;
           }
           &:hover {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#3da2ff')};
           }
           &.current-page {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#3da2ff')};
           }
 
           .menu-item-icon {
@@ -221,10 +221,10 @@ export const HeaderRightSide = styled.div`
         font-size: 15px;
       }
       &:hover {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#3da2ff')};
       }
       &.current-page {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#3da2ff')};
       }
     }
   }
@@ -280,10 +280,10 @@ export const MainMenu = styled.div`
           }
 
           &:hover {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#3da2ff')};
           }
           &.current-page {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#3da2ff')};
             background-color: #fff;
           }
         }
@@ -322,7 +322,7 @@ export const SelectedType = styled.button`
     font-family: 'Lato', sans-serif;
     font-size: ${themeGet('fontSizes.2', '15')}px;
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#3da2ff')};
     text-decoration: none;
 
     &:first-child {
@@ -532,7 +532,7 @@ export const DrawerMenuItem = styled.div`
       transition: 0.15s ease-in-out;
 
       &:hover {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#3da2ff')};
       }
       &:before {
         content: '';
@@ -545,10 +545,10 @@ export const DrawerMenuItem = styled.div`
         background: transparent;
       }
       &.current-page {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#3da2ff')};
         font-weight: 700;
         &:before {
-          background-color: ${themeGet('colors.primary', '#009E7F')};
+          background-color: ${themeGet('colors.primary', '#3da2ff')};
         }
       }
     }

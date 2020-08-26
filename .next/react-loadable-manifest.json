@@ -3,34 +3,34 @@
     {
       "id": "S+LZ",
       "name": "./components/MultiCarousel/MultiCarousel.tsx",
-      "file": "static/chunks/36.118d89511380f875f025.js",
-      "publicPath": "static/chunks/36.118d89511380f875f025.js"
+      "file": "static/chunks/36.2e6dbb9150555036ef31.js",
+      "publicPath": "static/chunks/36.2e6dbb9150555036ef31.js"
     },
     {
       "id": "eFaF",
       "name": "./components/Truncate/Truncate.tsx",
-      "file": "static/chunks/36.118d89511380f875f025.js",
-      "publicPath": "static/chunks/36.118d89511380f875f025.js"
+      "file": "static/chunks/36.2e6dbb9150555036ef31.js",
+      "publicPath": "static/chunks/36.2e6dbb9150555036ef31.js"
     },
     {
       "id": "q8M2",
       "name": "./containers/QuickView/QuickView.tsx",
-      "file": "static/chunks/36.118d89511380f875f025.js",
-      "publicPath": "static/chunks/36.118d89511380f875f025.js"
+      "file": "static/chunks/36.2e6dbb9150555036ef31.js",
+      "publicPath": "static/chunks/36.2e6dbb9150555036ef31.js"
     }
   ],
   "./Header/MobileHeader": [
     {
       "id": "869v",
       "name": "./helper/useComponentSize.js",
-      "file": "static/chunks/37.4d2ba175cb1a0f2b9246.js",
-      "publicPath": "static/chunks/37.4d2ba175cb1a0f2b9246.js"
+      "file": "static/chunks/37.0b45c3ef092fc5e55dcd.js",
+      "publicPath": "static/chunks/37.0b45c3ef092fc5e55dcd.js"
     },
     {
       "id": "DEOu",
       "name": "./containers/LayoutContainer/Header/MobileHeader.tsx",
-      "file": "static/chunks/37.4d2ba175cb1a0f2b9246.js",
-      "publicPath": "static/chunks/37.4d2ba175cb1a0f2b9246.js"
+      "file": "static/chunks/37.0b45c3ef092fc5e55dcd.js",
+      "publicPath": "static/chunks/37.0b45c3ef092fc5e55dcd.js"
     }
   ],
   "@apollo/react-ssr": [

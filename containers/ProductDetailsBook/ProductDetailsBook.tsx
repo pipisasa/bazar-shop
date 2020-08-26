@@ -130,7 +130,7 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
               <a
                 href="#"
                 onClick={scrollToDiv}
-                style={{ color: '#009e7f', fontWeight: 700 }}
+                style={{ color: '#3da2ff', fontWeight: 700 }}
               >
                 Read More
               </a>

@@ -62,10 +62,10 @@ const CategoryMenuWrapper = styled.div`
       }
 
       &:hover {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#3da2ff')};
       }
       &.current-page {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#3da2ff')};
         background-color: #fff;
       }
     }

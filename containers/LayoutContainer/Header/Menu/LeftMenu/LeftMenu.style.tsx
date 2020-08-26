@@ -38,10 +38,10 @@ export const MainMenu = styled.div`
           }
 
           &:hover {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#3da2ff')};
           }
           &.current-page {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#3da2ff')};
             background-color: #fff;
           }
         }
@@ -72,7 +72,7 @@ export const SelectedItem = styled.button`
     font-family: 'Lato', sans-serif;
     font-size: ${themeGet('fontSizes.2', '15')}px;
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#3da2ff')};
     text-decoration: none;
 
     &:first-child {

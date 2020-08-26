@@ -39,7 +39,7 @@ const Input = styled.input`
   }
 
   &:focus {
-    border-color: ${themeGet('colors.primary', '#009e7f')};
+    border-color: ${themeGet('colors.primary', '#3da2ff')};
   }
 
   &::placeholder {

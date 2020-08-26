@@ -123,7 +123,7 @@ export const SingleOrderList = styled.div`
   }
 
   &.active {
-    border: 2px solid ${themeGet('colors.primary', '#009E7F')};
+    border: 2px solid ${themeGet('colors.primary', '#3da2ff')};
   }
 `;
 
