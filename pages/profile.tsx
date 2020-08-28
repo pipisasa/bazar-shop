@@ -127,9 +127,9 @@ const ProfilePage: NextPage<Props> = ({ deviceType }) => {
             <SiteFooter style={{ marginTop: 50 }}>
               <FormattedMessage
                 id='siteFooter'
-                defaultMessage='Pickbazar is a product of'
+                defaultMessage='Made by '
               />
-              &nbsp; <Link href='#'> Redq, Inc.</Link>
+              &nbsp; <Link href='https://studio.makers.kg/'> Makers studio</Link>
             </SiteFooter>
           </PageWrapper>
         </Modal>

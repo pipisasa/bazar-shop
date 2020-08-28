@@ -15,13 +15,14 @@ import {
 import SearchBox from 'components/SearchBox/SearchBox';
 import { SearchContext } from 'contexts/search/search.context';
 import { HeaderContext } from 'contexts/header/header.context';
-import LogoImage from 'image/logo.svg';
+import LogoImage from 'image/trendy.svg';
 
 import { SearchIcon, LongArrowLeft } from 'components/AllSvgIcon';
 import Logo from 'components/Logo/Logo';
 import LanguageSwitcher from './Menu/LanguageSwitcher/LanguageSwitcher';
 import { isCategoryPage } from '../is-home-page';
 import useDimensions from 'helper/useComponentSize';
+import CartButton from './Menu/RightMenu/CartButton';
 
 type MobileHeaderProps = {
   className?: string;
@@ -135,7 +136,9 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ className, pathname }) => {
             <Logo imageUrl={LogoImage} alt='shop logo' />
           </LogoWrapper>
 
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
+
+          <CartButton/>
 
           {isHomePage ? (
             <SearchWrapper
